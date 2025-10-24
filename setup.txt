@@ -1,0 +1,5 @@
+tqdm 
+langchain
+py_vncorenlp
+pymongo
+langchain-text-splitters
