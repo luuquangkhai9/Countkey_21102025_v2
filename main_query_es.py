@@ -12,8 +12,13 @@ import re
 from tqdm import tqdm
 import py_vncorenlp
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from keyword_save_es import  load_data_to_elasticsearch_kw_a, bulk_data_to_elasticsearch_kw_a
 
 load_dotenv()
+
+VNCORE_MODEL_DIR = r'C:\Users\Administrator\Documents\Intern_Source\Countkey_21102025_v2\vncorenlp'
+BLACKLIST_FILE_PATH = r"C:\Users\Administrator\Documents\Fixed_key_countkey\blacklist_keywords.txt"
+
 
 # Lấy URL Elasticsearch từ biến môi trường
 elasticsearch_url = os.getenv("ELASTICSEARCH_URL")
@@ -35,6 +40,62 @@ class ExcludeHttpLogsFilter(logging.Filter):
 logging.getLogger("elasticsearch").addFilter(ExcludeHttpLogsFilter())
 logging.getLogger("urllib3").addFilter(ExcludeHttpLogsFilter())
 
+logger.info(f"Đang khởi tạo VnCoreNLP từ: {VNCORE_MODEL_DIR} (chỉ một lần)...")
+print(f"Đang khởi tạo VnCoreNLP từ: {VNCORE_MODEL_DIR} (chỉ một lần)...")
+try:
+    VNCORE_MODEL = py_vncorenlp.VnCoreNLP(save_dir=VNCORE_MODEL_DIR)
+    logger.info("✅ VnCoreNLP đã khởi tạo thành công.")
+    print("✅ VnCoreNLP đã khởi tạo thành công.")
+except Exception as e:
+    logger.error(f"❌ KHÔNG THỂ KHỞI TẠO VNCORENLP. Lỗi: {e}")
+    print(f"❌ KHÔNG THỂ KHỞI TẠO VNCORENLP. Lỗi: {e}")
+    exit()
+
+
+
+TEXT_SPLITTER = RecursiveCharacterTextSplitter(chunk_size=5000, chunk_overlap=50)
+
+def load_stopwords(file_path):
+    """Tải stopwords từ file."""
+    stopwords = []
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            for line in f:
+                word = line.strip().strip("'")
+                if word:
+                    stopwords.append(word.lower())
+        logger.info(f"✅ Đã tải {len(stopwords)} từ khóa blacklist từ: {file_path}")
+        print(f"Đã tải {len(stopwords)} từ khóa blacklist từ: {file_path}")
+        return tuple(stopwords)
+    except FileNotFoundError:
+        logger.error(f"❌ Không tìm thấy file blacklist: {file_path}. Sẽ tiếp tục mà không có blacklist.")
+        print(f"❌ Không tìm thấy file blacklist: {file_path}. Sẽ tiếp tục mà không có blacklist.")
+        return tuple()
+
+BLACKLISTED_START_WORDS = load_stopwords(BLACKLIST_FILE_PATH)
+
+
+CHUNK_GRAMMAR = [
+    ("LEGAL_DOC_RULE_2", r"(?:<Np>|<N>)(?:\s+<N>)*(?:\s+<M>)+(?:\s+(?:<Np>|<N>|<Ny>))+"),
+    ("LEGAL_DOC_RULE", r"(?:<Np>|<N>)(?:\s+<N>)*(\s+<M>)+"),
+    ("NOUN_RULE", r"(?:<Np>|<N>|<Ny>)(?:\s+(?:<Np>|<N>|<Ny>))*"),
+    # ("NOUN", r"<Np>|<N>|<Ny>"),
+
+
+]
+
+def compile_rules(rules):
+    return [
+        (name, re.compile(rule.replace("<", r"(?:\b").replace(">", r"\b)")))
+        for name, rule in rules
+    ]
+
+COMPILED_CHUNK_RULES = compile_rules(CHUNK_GRAMMAR)
+
+
+
+
+#### 1.1: Truy vấn trích xuất từ khoá cho thống kê top từ khoá
 def query_keyword_with_topic(es, start_date_str, end_date_str, type):
     try:
         logger.info(f"Starting query_keyword_with_topic for type: {type}, from {start_date_str} to {end_date_str}")
@@ -268,47 +329,11 @@ def query_keyword_with_topic(es, start_date_str, end_date_str, type):
 #         return []
 
 
-
-VNCORE_MODEL_DIR = r'C:\Users\Administrator\Documents\Intern_Source\Countkey_21102025_v2\vncorenlp'
-# BLACKLIST_FILE_PATH = r"C:\Users\Administrator\Documents\Fixed_key_countkey\blacklist_keywords.txt"
-
-logger.info(f"Đang khởi tạo VnCoreNLP từ: {VNCORE_MODEL_DIR} (chỉ một lần)...")
-print(f"Đang khởi tạo VnCoreNLP từ: {VNCORE_MODEL_DIR} (chỉ một lần)...")
-try:
-    VNCORE_MODEL = py_vncorenlp.VnCoreNLP(save_dir=VNCORE_MODEL_DIR)
-    logger.info("✅ VnCoreNLP đã khởi tạo thành công.")
-    print("✅ VnCoreNLP đã khởi tạo thành công.")
-except Exception as e:
-    logger.error(f"❌ KHÔNG THỂ KHỞI TẠO VNCORENLP. Lỗi: {e}")
-    print(f"❌ KHÔNG THỂ KHỞI TẠO VNCORENLP. Lỗi: {e}")
-    # exit()
     
-# TEXT_SPLITTER = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=50)
 
-# # --- 1.2: Các hàm và quy tắc trích xuất ---
+# --- 1.2: Các hàm và quy tắc trích xuất ---
 
-# def load_stopwords(file_path):
-#     """Tải stopwords từ file."""
-#     stopwords = []
-#     try:
-#         with open(file_path, "r", encoding="utf-8") as f:
-#             for line in f:
-#                 word = line.strip().strip("'")
-#                 if word:
-#                     stopwords.append(word.lower())
-#         logger.info(f"✅ Đã tải {len(stopwords)} từ khóa blacklist từ: {file_path}")
-#         return tuple(stopwords)
-#     except FileNotFoundError:
-#         logger.error(f"❌ Không tìm thấy file blacklist: {file_path}. Sẽ tiếp tục mà không có blacklist.")
-#         return tuple()
 
-# BLACKLISTED_START_WORDS = load_stopwords(BLACKLIST_FILE_PATH)
-
-# CHUNK_GRAMMAR = [
-#     ("LEGAL_DOC_RULE_2", r"(?:<Np>|<N>)(?:\s+<N>)*(?:\s+<M>)+(?:\s+(?:<Np>|<N>|<Ny>))+"),
-#     ("LEGAL_DOC_RULE", r"(?:<Np>|<N>)(?:\s+<N>)*(\s+<M>)+"),
-#     ("NOUN_RULE", r"(?:<Np>|<N>|<Ny>)(?:\s+(?:<Np>|<N>|<Ny>))*"),
-# ]
 
 
 # def compile_rules(rules):
@@ -317,188 +342,204 @@ except Exception as e:
 #         (name, re.compile(rule.replace("<", r"(?:\\b").replace(">", r"\\b)")))
 #         for name, rule in rules
 #     ]
+###___________________________________________________________________
 
-# COMPILED_CHUNK_RULES = compile_rules(CHUNK_GRAMMAR)
 
-# def clean_text(text):
-#     """Dọn dẹp văn bản cơ bản."""
-#     if not text:
-#         return ""
-#     text = re.sub(r'[-–—]+', ' ', text)
-#     text = ' '.join(text.split())
-#     return text
 
-# def is_valid_single_word_keyword(chunk_word, rule_name):
-#     """Kiểm tra xem từ đơn có hợp lệ không."""
-#     tag = chunk_word.get('posTag')
-#     word_form = chunk_word.get('wordForm', '')
-#     if tag == 'Np' and len(word_form) > 5:
-#         return True
-#     if tag == 'Ny':
-#         if word_form.isupper() and len(word_form) >= 2:
-#             return True
-#     if rule_name == "VERB_RULE" and tag == 'V' and len(word_form) > 5:
-#         return True
-#     return False
+#### 1.2: Truy vấn trích xuất từ khoá cho thống kê trending từ khoá
 
-# def extract_keywords_2(annotated_data):
-#     """Hàm trích xuất từ khóa chính từ dữ liệu đã được VnCoreNLP gán nhãn."""
-#     seen_keywords_lower = set()
-#     ordered_keywords = []
-#     if not isinstance(annotated_data, dict):
-#         return []
-#     for sentence_words in annotated_data.values():
-#         if not sentence_words:
-#             continue
-#         pos_sequence = " ".join([word.get('posTag', '') for word in sentence_words])
-#         claimed_indices = [False] * len(sentence_words)
-#         for rule_name, rule_pattern in COMPILED_CHUNK_RULES:
-#             for match in rule_pattern.finditer(pos_sequence):
-#                 start_char, end_char = match.span()
-#                 start_word = len(pos_sequence[:start_char].strip().split()) if start_char > 0 else 0
-#                 end_word = len(pos_sequence[:end_char].strip().split())
-#                 if any(claimed_indices[i] for i in range(start_word, end_word)):
-#                     continue
-#                 chunk_words = sentence_words[start_word:end_word]
-#                 phrase_text = ' '.join(w.get('wordForm', '') for w in chunk_words).replace("_", " ")
-#                 is_valid = False
-#                 if len(chunk_words) > 1:
-#                     is_valid = True
-#                 elif len(chunk_words) == 1:
-#                     if is_valid_single_word_keyword(chunk_words[0], rule_name):
-#                         is_valid = True
-#                 if is_valid and phrase_text:
-#                     lower_phrase = phrase_text.lower()
-#                     if lower_phrase not in seen_keywords_lower:
-#                         is_blacklisted = False
-#                         for blacklisted_word in BLACKLISTED_START_WORDS:
-#                             if blacklisted_word in lower_phrase:
-#                                 is_blacklisted = True
-#                                 break
-#                         if is_blacklisted:
-#                             continue
-#                         seen_keywords_lower.add(lower_phrase)
-#                         ordered_keywords.append(phrase_text)
-#                         for i in range(start_word, end_word):
-#                             claimed_indices[i] = True
-#     return ordered_keywords
+def clean_text(text):
+    """Dọn dẹp văn bản cơ bản."""
+    if not text:
+        return ""
+    text = re.sub(r'[-–—]+', ' ', text)
+    text = ' '.join(text.split())
+    return text
 
-# def get_keywords_for_document(title, content):
-#     """
-#     Hàm tổng hợp: Nhận title và content, trả về danh sách keywords cuối cùng.
-#     """
-#     combined_text = f"{title}. {content}" if title else content
-#     if not combined_text.strip() or combined_text.strip() == '.':
-#         return []
+def is_valid_single_word_keyword(chunk_word, rule_name):
+    """Kiểm tra xem từ đơn có hợp lệ không."""
+    tag = chunk_word.get('posTag')
+    word_form = chunk_word.get('wordForm', '')
+    if tag == 'Np' and len(word_form) > 5:
+        return True
+    if tag == 'Ny':
+        if word_form.isupper() and len(word_form) >= 2:
+            return True
+    if rule_name == "VERB_RULE" and tag == 'V' and len(word_form) > 5:
+        return True
+    return False
 
-#     chunks = TEXT_SPLITTER.split_text(combined_text)
+def extract_keywords_2(annotated_data):
+    """Hàm trích xuất từ khóa chính từ dữ liệu đã được VnCoreNLP gán nhãn."""
 
-#     if len(chunks) > 3:
-#         logger.warning(f"  Bài viết có {len(chunks)} chunks. Chỉ xử lý chunk đầu tiên.")
-#         chunks = chunks[:1] 
+    seen_keywords_lower = set()
+    ordered_keywords = []
+    if not isinstance(annotated_data, dict):
+        return []
+    for sentence_words in annotated_data.values():
+        if not sentence_words:
+            continue
+        pos_sequence = " ".join([word.get('posTag', '') for word in sentence_words])
+
+        # print(f"POS Sequence: {pos_sequence}")  # Debug: In chuỗi POS
+
+        claimed_indices = [False] * len(sentence_words)
+        for rule_name, rule_pattern in COMPILED_CHUNK_RULES:
+            for match in rule_pattern.finditer(pos_sequence):
+                start_char, end_char = match.span()
+                start_word = len(pos_sequence[:start_char].strip().split()) if start_char > 0 else 0
+                end_word = len(pos_sequence[:end_char].strip().split())
+                if any(claimed_indices[i] for i in range(start_word, end_word)):
+                    continue
+                chunk_words = sentence_words[start_word:end_word]
+                phrase_text = ' '.join(w.get('wordForm', '') for w in chunk_words).replace("_", " ")
+                is_valid = False
+                if len(chunk_words) > 1:
+                    is_valid = True
+                elif len(chunk_words) == 1:
+                    if is_valid_single_word_keyword(chunk_words[0], rule_name):
+                        is_valid = True
+                if is_valid and phrase_text:
+                    lower_phrase = phrase_text.lower()
+                    if lower_phrase not in seen_keywords_lower:
+                        is_blacklisted = False
+                        # BLACKLISTED_START_WORDS = load_stopwords(BLACKLIST_FILE_PATH)
+                        for blacklisted_word in BLACKLISTED_START_WORDS:
+                            if blacklisted_word in lower_phrase:
+                                is_blacklisted = True
+                                break
+                        if is_blacklisted:
+                            continue
+                        seen_keywords_lower.add(lower_phrase)
+                        ordered_keywords.append(phrase_text)
+                        for i in range(start_word, end_word):
+                            claimed_indices[i] = True
+    return ordered_keywords
+
+def get_keywords_for_document(title, content):
+    """
+    Hàm tổng hợp: Nhận title và content, trả về danh sách keywords cuối cùng.
+    """
+    combined_text = f"{title}. {content}" if title else content
+    if not combined_text.strip() or combined_text.strip() == '.':
+        return []
+
+    chunks = TEXT_SPLITTER.split_text(combined_text)
+
+    if len(chunks) > 3:
+        logger.warning(f"  Bài viết có {len(chunks)} chunks. Chỉ xử lý chunk đầu tiên.")
+        chunks = chunks[:1] 
     
-#     final_keywords_for_article = []
-#     seen_keywords_for_article = set()
+    final_keywords_for_article = []
+    seen_keywords_for_article = set()
     
-#     for chunk in chunks:
-#         cleaned_chunk = clean_text(chunk)
-#         if not cleaned_chunk:
-#             continue
+    for chunk in chunks:
+        cleaned_chunk = clean_text(chunk)
+        if not cleaned_chunk:
+            continue
+        # BLACKLISTED_START_WORDS = load_stopwords(BLACKLIST_FILE_PATH)
+        annotated_chunk = VNCORE_MODEL.annotate_text(cleaned_chunk)
+        keywords_from_chunk = extract_keywords_2(annotated_chunk)
         
-#         annotated_chunk = VNCORE_MODEL.annotate_text(cleaned_chunk)
-#         keywords_from_chunk = extract_keywords_2(annotated_chunk)
-        
-#         for keyword in keywords_from_chunk:
-#             lower_keyword = keyword.lower()
-#             if lower_keyword not in seen_keywords_for_article:
-#                 seen_keywords_for_article.add(lower_keyword)
-#                 final_keywords_for_article.append(keyword)
+        for keyword in keywords_from_chunk:
+            lower_keyword = keyword.lower()
+            if lower_keyword not in seen_keywords_for_article:
+                seen_keywords_for_article.add(lower_keyword)
+                final_keywords_for_article.append(keyword)
     
-#     return final_keywords_for_article
+    return final_keywords_for_article
 
-def upgrade_extract_keyword_record(es, target_index_alias):
-    # """
-    # Truy vấn 'posts' trong ngày, trích xuất từ khóa và đẩy sang index mới.
-    # Sử dụng global 'es' client.
-    # """
-    # index_root = "posts"
-    # batch_size = 500
-    # bulk_batch_size = 1000
+def upgrade_extract_keyword_record(es, target_index_alias, start_time_str, end_time_str):
+    """
+    Truy vấn 'posts' trong ngày, trích xuất từ khóa và đẩy sang index mới.
+    Sử dụng global 'es' client.
+    """
+    index_root = "posts"
+    batch_size = 500
+    bulk_batch_size = 1000
 
     # time_current = datetime.now()
     # start_of_day = time_current.replace(hour=0, minute=0, second=0, microsecond=0)
     # end_of_day = time_current
+    start_of_day = start_time_str
+    end_of_day = end_time_str
     
-    # time_format = "MM/dd/yyyy HH:mm:ss"
+    time_format = "%m/%d/%Y %H:%M:%S"
     
-    # fields_to_extract = [
-    #     "id", "created_time", "time_crawl", "type", "field_classify", 
-    #     "link", "author", "topic_id", "tenancy_ids", "title", "content"
-    # ]
+    fields_to_extract = [
+        "id", "created_time", "time_crawl", "type", "field_classify", 
+        "link", "author", "topic_id", "tenancy_ids", "title", "content"
+    ]
 
-    # query_body = {
-    #     "size": batch_size,
-    #     "_source": fields_to_extract,
-    #     "query": {
-    #         "bool": {
-    #             "filter": [
-    #                 {"range": {"created_time": {"gte": start_of_day.strftime(time_format), "lte": end_of_day.strftime(time_format), "format": time_format}}},
-    #                 {"term": {"type.keyword": "electronic media"}}
-    #             ]
-    #         }
-    #     },
-    #     "sort": [{"created_time": "asc"}, {"_id": "asc"}]
-    # }
+    query_body = {
+        "size": batch_size,
+        "_source": fields_to_extract,
+        "query": {
+            "bool": {
+                "filter": [
+                    {"range": {"created_time": {"gte": start_of_day, "lte": end_of_day}}},
+                    {"term": {"type.keyword": "electronic media"}}
+                ]
+            }
+        },
+        "sort": [{"created_time": "asc"}, {"id.keyword": "asc"}]
+    }
 
-    # search_after_value = None
-    # records_to_bulk = []
-    # total_processed = 0
+    search_after_value = None
+    records_to_bulk = []
+    total_processed = 0
     
-    # logger.info(f"Bắt đầu trích xuất từ index '{index_root}' (Loại: 'electronic media')")
-    # logger.info(f"Phạm vi thời gian: {start_of_day} TỚI {end_of_day}")
+    logger.info(f"Bắt đầu trích xuất từ index '{index_root}' (Loại: 'electronic media')")
+    logger.info(f"Phạm vi thời gian: {start_of_day} TỚI {end_of_day}")
+    print(f"Bắt đầu trích xuất từ index '{index_root}' (Loại: 'electronic media')")
+    print(f"Phạm vi thời gian: {start_of_day} TỚI {end_of_day}")
+    try:
+        while True:
+            if search_after_value:
+                query_body["search_after"] = search_after_value
 
-    # try:
-    #     while True:
-    #         if search_after_value:
-    #             query_body["search_after"] = search_after_value
+            result = es.search(index=index_root, body=query_body, request_timeout=120)
+            hits = result['hits']['hits']
+            if not hits:
+                logger.info("Không còn dữ liệu nào khớp với truy vấn.")
+                break
 
-    #         result = es.search(index=index_root, body=query_body, request_timeout=120)
-    #         hits = result['hits']['hits']
-    #         if not hits:
-    #             logger.info("Không còn dữ liệu nào khớp với truy vấn.")
-    #             break
+            logger.info(f"  Đã lấy được {len(hits)} bản ghi. Bắt đầu xử lý trích xuất từ khóa...")
+            print(f"  Đã lấy được {len(hits)} bản ghi. Bắt đầu xử lý trích xuất từ khóa...")
 
-    #         logger.info(f"  Đã lấy được {len(hits)} bản ghi. Bắt đầu xử lý trích xuất từ khóa...")
+            for hit in tqdm(hits, desc="  Đang xử lý batch", leave=False):
+                doc = hit['_source']
+                keywords = get_keywords_for_document(doc.get('title', ''), doc.get('content', ''))
+                keywords = [kw.lower() for kw in keywords]
+                # keywords = [kw.lower() for kw in get_keywords_for_document(doc.get('title', ''), doc.get('content', ''))]
 
-    #         for hit in tqdm(hits, desc="  Đang xử lý batch", leave=False):
-    #             doc = hit['_source']
-    #             keywords = get_keywords_for_document(doc.get('title', ''), doc.get('content', ''))
-    #             keywords = [kw.lower() for kw in keywords]
-    #             # keywords = [kw.lower() for kw in get_keywords_for_document(doc.get('title', ''), doc.get('content', ''))]
-
-    #             new_doc = {}
-    #             for field in fields_to_extract:
-    #                 if field in doc:
-    #                     new_doc[field] = doc[field]
+                new_doc = {}
+                for field in fields_to_extract:
+                    if field in doc:
+                        new_doc[field] = doc[field]
                 
-    #             new_doc['key_word_extract'] = keywords
-    #             records_to_bulk.append(new_doc)
-    #             total_processed += 1
+                new_doc['key_word_extract'] = keywords
+                records_to_bulk.append(new_doc)
+                total_processed += 1
 
-    #         if len(records_to_bulk) >= bulk_batch_size:
-    #             logger.info(f"  Đang đẩy {len(records_to_bulk)} bản ghi lên '{target_index_alias}'...")
-    #             bulk_data_to_elasticsearch_kw_a(es, records_to_bulk, target_index_alias)
-    #             records_to_bulk = []
+            if len(records_to_bulk) >= bulk_batch_size:
+                logger.info(f"  Đang đẩy {len(records_to_bulk)} bản ghi lên '{target_index_alias}'...")
+                print(f"  Đang đẩy {len(records_to_bulk)} bản ghi lên '{target_index_alias}'...")
+                bulk_data_to_elasticsearch_kw_a(es, records_to_bulk, target_index_alias)
+                records_to_bulk = []
 
-    #         search_after_value = hits[-1]['sort']
+            search_after_value = hits[-1]['sort']
         
-    #     if records_to_bulk:
-    #         logger.info(f"  Đẩy {len(records_to_bulk)} bản ghi cuối cùng lên '{target_index_alias}'...")
-    #         bulk_data_to_elasticsearch_kw_a(es, records_to_bulk, target_index_alias)
+        if records_to_bulk:
+            logger.info(f"  Đẩy {len(records_to_bulk)} bản ghi cuối cùng lên '{target_index_alias}'...")
+            print(f"  Đẩy {len(records_to_bulk)} bản ghi cuối cùng lên '{target_index_alias}'...")
+            bulk_data_to_elasticsearch_kw_a(es, records_to_bulk, target_index_alias)
 
-    #     logger.info(f"🎉 HOÀN TẤT! Đã xử lý và đẩy tổng cộng {total_processed} bản ghi.")
+        logger.info(f"🎉 HOÀN TẤT! Đã xử lý và đẩy tổng cộng {total_processed} bản ghi.")
+        print(f"🎉 HOÀN TẤT! Đã xử lý và đẩy tổng cộng {total_processed} bản ghi.")
 
-    # except Exception as e:
-    #     logger.error(f"❌ Lỗi nghiêm trọng trong vòng lặp xử lý: {e}", exc_info=True)
+    except Exception as e:
+        logger.error(f"❌ Lỗi nghiêm trọng trong vòng lặp xử lý: {e}", exc_info=True)
+        print(f"❌ Lỗi nghiêm trọng trong vòng lặp xử lý: {e}")
     
     return

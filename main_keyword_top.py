@@ -12,7 +12,7 @@ from time import sleep
 import os
 from dotenv import load_dotenv
 # from main_query_es import  query_keyword_with_trend, upgrade_extract_keyword_record
-from main_query_es import  upgrade_extract_keyword_record
+from main_query_es import  upgrade_extract_keyword_record, load_stopwords
 
 from collections import defaultdict
 
@@ -414,7 +414,7 @@ def calculate_top_keywords_with_topic_2_es(es, input_date, data, index_name, pla
         return 
 
     try:
-        with open('blacklist_hashtag.txt', 'r', encoding='utf-8') as f:
+        with open(r'blacklist_hashtag.txt', 'r', encoding='utf-8') as f:
             blacklist = set(line.strip() for line in f if line.strip())
     except Exception as e:
         print(f"Error reading blacklist file: {e}")
@@ -735,10 +735,10 @@ def calculate_top_keywords_with_topic_2_es(es, input_date, data, index_name, pla
 #     return 
 
     
-def calculate_top_keywords_with_trend_logic_topic(es, input_date, initial_index, platform):
+def calculate_top_keywords_with_trend_logic_topic(input_date, es, initial_index, platform):
     # This function can be implemented similarly to the previous one,
     # but with any necessary modifications for version 2.
     # daily_keywords = query_keyword_with_trend_v2(es, initial_index)
     # 
-    upgrade_extract_keyword_record(es, initial_index)
+    # upgrade_extract_keyword_record(es, initial_index)
     return
