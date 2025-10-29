@@ -1,1 +1,3 @@
 .venv
+vncorenlp/
+__pycache__/
