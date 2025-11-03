@@ -314,14 +314,14 @@ def summarize_keywords_in_intervals(type ,  old_extracted_keywords):
         
 def run_keyword_today():
     DAY_RUN_AGAIN = int(os.getenv("DAY_RUN_AGAIN"))
-    # current_day = datetime.now()-timedelta(days = DAY_RUN_AGAIN)
-    current_day = datetime.now()-timedelta(days = 1)
+    current_day = datetime.now()-timedelta(days = DAY_RUN_AGAIN)
+    current_day = datetime.now()-timedelta(days = 8)
     #current_day = datetime.now()
 
     global restart_needed  # Sử dụng biến toàn cục
 
     collections = ['media','youtube', 'forums', 'facebook', 'tiktok']
-    # collections = ['media']
+    # collections = ['youtube', 'forums', 'facebook', 'tiktok']
 
     # query_data_files = [query_data_file_fb, query_data_file_tik, query_data_file_ytb, query_data_file_voz, query_data_file_xamvn, query_data_file_oto, query_data_file_media]
     #top_keywords_summarys = [top_keywords_summary_fb, top_keywords_summary_tik, top_keywords_summary_ytb, top_keywords_summary_voz, top_keywords_summary_xamvn, top_keywords_summary_oto, top_keywords_summary_media, top_keywords_summary_reddit]
@@ -339,31 +339,55 @@ def run_keyword_today():
                 current_day_origin = current_day.replace( minute=0, second=0, microsecond=0)
 
                 if current_day.day == now.day:
-                    logging.info(f"Processing trending key for present from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')} to previous hour 24h")
-                    print(f"Processing trending key for present from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')} to previous hour 24h")
+                    print(start_of_day.strftime("%m/%d/%Y %H:%M:%S"))
+                    print(current_day_origin.strftime("%m/%d/%Y %H:%M:%S"))
+                    logging.info(f"Processing trending key and top key for present from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')}")
+                    print(f"Processing trending key and top key for present from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')}")
+                    
+                    for coll in collections:
+                        print(f"Đang xử lý collection: {coll}")
+
+                        #phần trích xuất từ khoá và lưu từ khoá cho bài toán top từ khoá
+                        logging.info(f"Processing top key for present from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')}")
+                        print(f"Processing trending key for present from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')}")
+                            #trích xuất từ khoá cho bài toán top từ khoá
+                        # extracted_keywords = query_and_extract_keywords(es_db , start_of_day.strftime("%m/%d/%Y %H:%M:%S"), end_of_interval.strftime("%m/%d/%Y %H:%M:%S") , coll )
+                        #     # #tính toán top từ khoá
+                        current_day_str = start_of_day.strftime("%m/%d/%Y")
+                        # calculate_top_keywords_with_topic_2_es(es_db , current_day_str, extracted_keywords, historical_data_index, coll)
+
+                        #------phần trích xuất từ khoá và đề xuất xu hướngcho bài toán trending
+                        logging.info(f"Processing trending key for present from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')} to previous hour 24h")
+                        print(f"Processing trending key for present from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')} to previous hour 24h")
+                            #trích xuất từ khoá cho bài toán trending
+                        upgrade_extract_keyword_record(es_db, initial_index, start_of_day.strftime("%m/%d/%Y %H:%M:%S"), end_of_interval.strftime("%m/%d/%Y %H:%M:%S"), coll)
+                            #tính toán xu hướng                  
+                        calculate_top_keywords_with_trend_logic_topic(es_db, current_day_origin, alias_name, index_name_trend_v2 , coll )
+
                 else:
                     print(start_of_day.strftime("%m/%d/%Y %H:%M:%S"))
                     print(end_of_interval.strftime("%m/%d/%Y %H:%M:%S"))
-                    logging.info(f"Processing interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
-                    print(f"Processing interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
-                
-                for coll in collections:
-                    print(f"Đang xử lý collection: {coll}")
+                    logging.info(f"Processing top key and trending key interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
+                    print(f"Processing top key and trending key interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
+               
+                    for coll in collections:
+                        print(f"Đang xử lý collection: {coll}")
 
-                    #phần trích xuất từ khoá và lưu từ khoá cho bài toán top từ khoá
-                        #trích xuất từ khoá cho bài toán top từ khoá
-                    extracted_keywords = query_and_extract_keywords(es_db , start_of_day.strftime("%m/%d/%Y %H:%M:%S"), end_of_interval.strftime("%m/%d/%Y %H:%M:%S") , coll )
-                        # #tính toán top từ khoá
-                    current_day_str = start_of_day.strftime("%m/%d/%Y")
-                    calculate_top_keywords_with_topic_2_es(es_db , current_day_str, extracted_keywords, historical_data_index, coll)
+                        #phần trích xuất từ khoá và lưu từ khoá cho bài toán top từ 
+                        logging.info(f"Processing top key interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
+                        print(f"Processing top key interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
+                            #trích xuất từ khoá cho bài toán top từ khoá
+                        # extracted_keywords = query_and_extract_keywords(es_db , start_of_day.strftime("%m/%d/%Y %H:%M:%S"), end_of_interval.strftime("%m/%d/%Y %H:%M:%S") , coll )
+                        #     # #tính toán top từ khoá
+                        current_day_str = start_of_day.strftime("%m/%d/%Y")
+                        # calculate_top_keywords_with_topic_2_es(es_db , current_day_str, extracted_keywords, historical_data_index, coll)
 
-                    #------phần trích xuất từ khoá và đề xuất xu hướngcho bài toán trending
-                        #trích xuất từ khoá cho bài toán trending
-                    upgrade_extract_keyword_record(es_db, initial_index, start_of_day.strftime("%m/%d/%Y %H:%M:%S"), end_of_interval.strftime("%m/%d/%Y %H:%M:%S"), coll)
-                        #tính toán xu hướng                  
-                    if current_day.day == now.day:
-                        calculate_top_keywords_with_trend_logic_topic(es_db, current_day_origin, alias_name, index_name_trend_v2 , coll )
-                    elif current_day.day < now.day:
+                        #------phần trích xuất từ khoá và đề xuất xu hướngcho bài toán trending
+                        logging.info(f"Processing trending key interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
+                        print(f"Processing trending key interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
+                            #trích xuất từ khoá cho bài toán trending
+                        upgrade_extract_keyword_record(es_db, initial_index, start_of_day.strftime("%m/%d/%Y %H:%M:%S"), end_of_interval.strftime("%m/%d/%Y %H:%M:%S"), coll)
+                            #tính toán xu hướng                  
                         calculate_top_keywords_with_trend_logic_topic(es_db, current_day_str, alias_name, index_name_trend_v2 , coll )
 
                 current_day +=timedelta(days=1)
@@ -382,19 +406,19 @@ def run_keyword_today():
             print(f"Processing interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
             for coll in collections:
 
-                #-----phần trích xuất từ khoá và lưu từ khoá cho bài toán top từ khoá
-                    #trích xuất từ khoá cho bài toán top từ khoá
-                extracted_keywords = query_and_extract_keywords(es_db , start_of_day.strftime("%m/%d/%Y %H:%M:%S"), end_of_interval.strftime("%m/%d/%Y %H:%M:%S") , coll )
-                    # #tính toán top từ khoá
+                # #-----phần trích xuất từ khoá và lưu từ khoá cho bài toán top từ khoá
+                #     #trích xuất từ khoá cho bài toán top từ khoá
+                # extracted_keywords = query_and_extract_keywords(es_db , start_of_day.strftime("%m/%d/%Y %H:%M:%S"), end_of_interval.strftime("%m/%d/%Y %H:%M:%S") , coll )
+                #     # #tính toán top từ khoá
                 current_day_str = start_of_day.strftime("%m/%d/%Y")
-                calculate_top_keywords_with_topic_2_es(es_db , current_day_str, extracted_keywords, historical_data_index, coll)
+                # calculate_top_keywords_with_topic_2_es(es_db , current_day_str, extracted_keywords, historical_data_index, coll)
 
                 #------phần trích xuất từ khoá và đề xuất xu hướngcho bài toán trending
                     #trích xuất từ khoá cho bài toán trending
                 upgrade_extract_keyword_record(es_db, initial_index, start_of_day.strftime("%m/%d/%Y %H:%M:%S"), end_of_interval.strftime("%m/%d/%Y %H:%M:%S"), coll)
                     #tính toán xu hướng
-                logging.info(f"Processing trending key for present from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')} to previous hour 24h")
-                print(f"Processing trending key for present from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')} to previous hour 24h")
+                logging.info(f"Processing trending key for present hour context from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')} to previous hour 24h")
+                print(f"Processing trending key for present hour context from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')} to previous hour 24h")
                 calculate_top_keywords_with_trend_logic_topic(es_db, current_day_origin, alias_name, index_name_trend_v2 ,coll )
         current_day = datetime.now()
         time.sleep(2*3600)

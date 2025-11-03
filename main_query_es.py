@@ -63,7 +63,7 @@ def load_stopwords(file_path):
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             for line in f:
-                word = line.strip().strip("'")
+                word = line.strip().strip('\'" ')
                 if word:
                     stopwords.append(word.lower())
         logger.info(f"✅ Đã tải {len(stopwords)} từ khóa blacklist từ: {file_path}")
@@ -78,9 +78,9 @@ BLACKLISTED_START_WORDS = load_stopwords(BLACKLIST_FILE_PATH)
 
 
 CHUNK_GRAMMAR = [
-    ("LEGAL_DOC_RULE_2", r"(?:<Np>|<N>)(?:\s+<N>)*(?:\s+<M>)+(?:\s+(?:<Np>|<N>|<Ny>))+(?:\s+<M>)?"),
-    ("LEGAL_DOC_RULE", r"(?:<Np>|<N>)(?:\s+<N>)*(\s+<M>)+"),
-    ("NOUN_RULE", r"(?:<Np>|<N>|<Ny>)(?:\s+(?:<Np>|<N>|<Ny>))*"),
+    ("LEGAL_DOC_RULE_2", r"(?:<N>|<Np>|<Nc>|<Nu>|<Ny>|<Nb>)(?:\s+<N>|<Np>|<Nc>|<Nu>|<Ny>|<Nb>)*(?:\s+<M>)+(?:\s+(?:<N>|<Np>|<Nc>|<Nu>|<Ny>|<Nb>))+(?:\s+<M>)?"),
+    ("LEGAL_DOC_RULE", r"(?:<N>|<Np>|<Nc>|<Nu>|<Ny>|<Nb>)(?:\s+<N>|<Np>|<Nc>|<Nu>|<Ny>|<Nb>)*(\s+<M>)+"),
+    ("NOUN_RULE", r"(?:<N>|<Np>|<Nc>|<Nu>|<Ny>|<Nb>)(?:\s+(?:<N>|<Np>|<Nc>|<Nu>|<Ny>|<Nb>))*"),
     # ("NOUN", r"<Np>|<N>|<Ny>"),
 
 
@@ -427,7 +427,7 @@ def extract_keywords_2(annotated_data):
                         for blacklisted_word in BLACKLISTED_START_WORDS:
                             if blacklisted_word in lower_phrase:
                                 is_blacklisted = True
-                                print(f"  Bỏ qua từ khoá bị blacklist: {phrase_text}")
+                                # print(f"  Bỏ qua từ khoá bị blacklist: {phrase_text}")
                                 break
                         if is_blacklisted:
                             continue

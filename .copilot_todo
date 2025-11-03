@@ -1,0 +1,4 @@
+[x] Review how BLACKLISTED_START_WORDS is used during keyword extraction
+[x] Inspect load_stopwords to ensure it loads blacklist entries correctly
+[x] Trace keyword filtering logic to confirm blacklist application
+[x] Summarize root cause of blacklist filtering failure
