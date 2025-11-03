@@ -2,6 +2,7 @@ import json
 from collections import defaultdict
 from datetime import datetime , timedelta
 # from langdetect import detect 
+import math
 import numpy as np
 import string
 import re
@@ -735,10 +736,189 @@ def calculate_top_keywords_with_topic_2_es(es, input_date, data, index_name, pla
 #     return 
 
     
-def calculate_top_keywords_with_trend_logic_topic(input_date, es, initial_index, platform):
-    # This function can be implemented similarly to the previous one,
-    # but with any necessary modifications for version 2.
-    # daily_keywords = query_keyword_with_trend_v2(es, initial_index)
-    # 
-    # upgrade_extract_keyword_record(es, initial_index)
+def calculate_top_keywords_with_trend_logic_topic(es_db, current_day, initial_index, index_name_trend_v2, collection_type):
+    
+    now = datetime.now()
+    if isinstance(current_day, str):
+        # Chạy cho ngày cũ, xét cả ngày
+        current_day_dt = datetime.strptime(current_day, "%m/%d/%Y")
+        trending_start_time = current_day_dt.replace(hour=0, minute=0, second=0, microsecond=0)
+        trending_end_time = current_day_dt.replace(hour=23, minute=59, second=59, microsecond=999999)
+        baseline_end_time = trending_start_time
+        baseline_start_time = baseline_end_time - timedelta(days=14)
+    else: # is a datetime object
+        # Chạy cho ngày hiện tại, xét 24h gần nhất
+        trending_end_time = current_day.replace(minute=0, second=0, microsecond=0)
+        trending_start_time = trending_end_time - timedelta(hours=24)
+        baseline_end_time = trending_start_time
+        baseline_start_time = baseline_end_time - timedelta(days=14)
+
+    try:
+        list_topic = query_topic_id_grouped_by_tenant()
+    except Exception as e:
+        print(f"Error getting topics from MongoDB: {e}")
+        return
+
+    all_docs_to_index = []
+
+    for tenancy in list_topic:
+        tenant_id = tenancy["tenant"]
+        topic_ids_for_tenant = tenancy["topic_id"]
+        
+        # Add "all" to calculate trend for the whole tenancy
+        topics_to_process = topic_ids_for_tenant + ["all"]
+
+        for topic_id in topics_to_process:
+            # 1. Build the main query
+            bool_filter = [
+                {"term": {"type": collection_type}},
+                {"range": {"created_time": {
+                    "gte": baseline_start_time.strftime("%m/%d/%Y %H:%M:%S"),
+                    "lte": trending_end_time.strftime("%m/%d/%Y %H:%M:%S"),
+                    "format": "MM/dd/yyyy HH:mm:ss"
+                }}}
+            ]
+            # Add tenancy and topic filters
+            bool_filter.append({"term": {"tenancy_ids.keyword": tenant_id}})
+            if topic_id != "all":
+                bool_filter.append({"term": {"topic_id.keyword": topic_id}})
+
+            query = {
+                "size": 0,
+                "query": {"bool": {"filter": bool_filter}},
+                "aggs": {
+                    "keywords_agg": {
+                        "terms": {"field": "key_word_extract", "size": 4000, "shard_size": 10000},
+                        "aggs": {
+                            "trending_period": {
+                                "filter": {
+                                    "range": {"created_time": {
+                                        "gte": trending_start_time.strftime("%m/%d/%Y %H:%M:%S"),
+                                        "lte": trending_end_time.strftime("%m/%d/%Y %H:%M:%S"),
+                                        "format": "MM/dd/yyyy HH:mm:ss"
+                                    }}
+                                }
+                            },
+                            "baseline_period": {
+                                "filter": {
+                                     "range": {"created_time": {
+                                        "gte": baseline_start_time.strftime("%m/%d/%Y %H:%M:%S"),
+                                        "lt": baseline_end_time.strftime("%m/%d/%Y %H:%M:%S"),
+                                        "format": "MM/dd/yyyy HH:mm:ss"
+                                    }}
+                                },
+                                "aggs": {
+                                    "daily_counts": {
+                                        "date_histogram": {
+                                            "field": "created_time",
+                                            "fixed_interval": "1d",
+                                            "min_doc_count": 0,
+                                            "extended_bounds": {
+                                                "min": baseline_start_time.strftime("%m/%d/%Y %H:%M:%S"),
+                                                "max": (baseline_end_time - timedelta(seconds=1)).strftime("%m/%d/%Y %H:%M:%S")
+                                            },
+                                            "format": "MM/dd/yyyy HH:mm:ss"
+                                        }
+                                    }
+                                }
+                            },
+                            "baseline_stats": {
+                                "extended_stats_bucket": {
+                                    "buckets_path": "baseline_period>daily_counts._count",
+                                    "sigma": 1 
+                                }
+                            }
+                        }
+                    },
+                    "total_articles_trending": {
+                        "filter": {
+                            "range": {"created_time": {
+                                "gte": trending_start_time.strftime("%m/%d/%Y %H:%M:%S"),
+                                "lte": trending_end_time.strftime("%m/%d/%Y %H:%M:%S"),
+                                "format": "MM/dd/yyyy HH:mm:ss"
+                            }}
+                        },
+                        "aggs": {
+                            "unique_articles": {"cardinality": {"field": "id.keyword"}}
+                        }
+                    }
+                }
+            }
+
+            try:
+                response = es_db.search(index=initial_index, body=query, request_timeout=120)
+            except Exception as e:
+                print(f"Error querying Elasticsearch for tenant {tenant_id}, topic {topic_id}: {e}")
+                continue
+
+            keyword_buckets = response.get('aggregations', {}).get('keywords_agg', {}).get('buckets', [])
+            total_articles = response.get('aggregations', {}).get('total_articles_trending', {}).get('unique_articles', {}).get('value', 0)
+
+            if not keyword_buckets or total_articles == 0:
+                continue
+
+            keywords_trend_data = []
+            for bucket in keyword_buckets:
+                keyword = bucket.get('key')
+                if not keyword or len(keyword) <= 2:
+                    continue
+
+                record = bucket.get('trending_period', {}).get('doc_count', 0)
+                if record == 0:
+                    continue
+
+                stats = bucket.get('baseline_stats', {})
+                avg_baseline = stats.get('avg', 0)
+                std_dev_baseline = stats.get('std_deviation', 0)
+
+                if std_dev_baseline is None or not math.isfinite(std_dev_baseline):
+                    std_dev_baseline = 0
+                
+                # Z-score calculation
+                if std_dev_baseline == 0:
+                    score = 10 + record if avg_baseline == 0 and record > 0 else 0
+                else:
+                    score = (record - avg_baseline) / std_dev_baseline
+
+                percentage = (record / total_articles) * 100 if total_articles > 0 else 0
+
+                keywords_trend_data.append({
+                    "keyword": keyword,
+                    "percentage": percentage,
+                    "record": record,
+                    "score": score,
+                    "avg_paper_count_baseline": avg_baseline,
+                    "stddev_paper_count_baseline": std_dev_baseline
+                })
+
+            if not keywords_trend_data:
+                continue
+
+            # Sort by score and set isTrend for top 50
+            keywords_trend_data.sort(key=lambda x: x['score'], reverse=True)
+            for i, item in enumerate(keywords_trend_data):
+                item['isTrend'] = i < 50
+
+            # Prepare document for indexing
+            date_str = trending_end_time.strftime("%m_%d_%Y")
+            doc_id = f"trend_{date_str}_{collection_type}_{tenant_id}_{topic_id}"
+            
+            document = {
+                "id": doc_id,
+                "date": trending_end_time.strftime("%m/%d/%Y"),
+                "type": collection_type,
+                "tenant_id": tenant_id,
+                "topic_id": topic_id,
+                "keywords_trend": keywords_trend_data
+            }
+            all_docs_to_index.append(document)
+
+    if all_docs_to_index:
+        try:
+            print(f"Indexing {len(all_docs_to_index)} trend documents for {collection_type}...")
+            bulk_data_to_elasticsearch_kw_a(es_db, all_docs_to_index, index_name_trend_v2)
+            print("Successfully indexed trend data.")
+        except Exception as e:
+            print(f"Error bulk indexing trend data: {e}")
+
     return

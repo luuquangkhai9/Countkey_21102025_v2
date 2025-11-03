@@ -9,6 +9,8 @@ import time
 import os
 
 import re
+import emoji
+import regex
 from tqdm import tqdm
 import py_vncorenlp
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -16,8 +18,8 @@ from keyword_save_es import  load_data_to_elasticsearch_kw_a, bulk_data_to_elast
 
 load_dotenv()
 
-VNCORE_MODEL_DIR = r'C:\Users\Administrator\Documents\Intern_Source\Countkey_21102025_v2\vncorenlp'
-BLACKLIST_FILE_PATH = r"C:\Users\Administrator\Documents\Fixed_key_countkey\blacklist_keywords.txt"
+VNCORE_MODEL_DIR = r'/home/ubuntu/Documents/Countkey_21102025_v2/vncorenlp'
+BLACKLIST_FILE_PATH = r"/home/ubuntu/Documents/Countkey_21102025_v2/blacklist_keywords.txt"
 
 
 # Lấy URL Elasticsearch từ biến môi trường
@@ -51,9 +53,9 @@ except Exception as e:
     print(f"❌ KHÔNG THỂ KHỞI TẠO VNCORENLP. Lỗi: {e}")
     exit()
 
+# VNCORE_MODEL=None # DEBUG: Tạm thời vô hiệu hóa VnCoreNLP 
 
-
-TEXT_SPLITTER = RecursiveCharacterTextSplitter(chunk_size=5000, chunk_overlap=50)
+TEXT_SPLITTER = RecursiveCharacterTextSplitter(chunk_size=3000, chunk_overlap=50)
 
 def load_stopwords(file_path):
     """Tải stopwords từ file."""
@@ -76,7 +78,7 @@ BLACKLISTED_START_WORDS = load_stopwords(BLACKLIST_FILE_PATH)
 
 
 CHUNK_GRAMMAR = [
-    ("LEGAL_DOC_RULE_2", r"(?:<Np>|<N>)(?:\s+<N>)*(?:\s+<M>)+(?:\s+(?:<Np>|<N>|<Ny>))+"),
+    ("LEGAL_DOC_RULE_2", r"(?:<Np>|<N>)(?:\s+<N>)*(?:\s+<M>)+(?:\s+(?:<Np>|<N>|<Ny>))+(?:\s+<M>)?"),
     ("LEGAL_DOC_RULE", r"(?:<Np>|<N>)(?:\s+<N>)*(\s+<M>)+"),
     ("NOUN_RULE", r"(?:<Np>|<N>|<Ny>)(?:\s+(?:<Np>|<N>|<Ny>))*"),
     # ("NOUN", r"<Np>|<N>|<Ny>"),
@@ -352,9 +354,27 @@ def clean_text(text):
     """Dọn dẹp văn bản cơ bản."""
     if not text:
         return ""
+
+    # Xóa ký tự ẩn (ZWSP, BOM)
+    text = re.sub(r'[\u200b\u200c\u200d\ufeff]', '', text)
+
+     # Xóa emoji
+    text = emoji.replace_emoji(text, replace='')
+
+    # text = re.sub(r"[^0-9A-Za-zÀ-ỹà-ỹĐđ.,!?;:'\"()\[\]{}<>/@#$%^&*_+=\-–—\s]", '', text)
+
+    # text = re.sub(r"[^0-9A-Za-zÀ-ỹà-ỹĐđ.,!?;:'\"()\[\]{}<>/@#$%^&*_+=\-–—\s]", '', text)
+
+
+    # text = regex.sub(r"[^\p{Latin}0-9.,!?;:'\"()\[\]{}<>/@#$%^&*_+=\-–—\s]", '', text)
+    text = regex.sub(r"[^\p{Latin}Đđ0-9.,!?;:'\"()\[\]{}<>/@#$%^&*+=\-–—\s]", '', text)
+
+
+
+
     text = re.sub(r'[-–—]+', ' ', text)
     text = ' '.join(text.split())
-    return text
+    return text.strip()
 
 def is_valid_single_word_keyword(chunk_word, rule_name):
     """Kiểm tra xem từ đơn có hợp lệ không."""
@@ -407,6 +427,7 @@ def extract_keywords_2(annotated_data):
                         for blacklisted_word in BLACKLISTED_START_WORDS:
                             if blacklisted_word in lower_phrase:
                                 is_blacklisted = True
+                                print(f"  Bỏ qua từ khoá bị blacklist: {phrase_text}")
                                 break
                         if is_blacklisted:
                             continue
@@ -436,9 +457,19 @@ def get_keywords_for_document(title, content):
     for chunk in chunks:
         cleaned_chunk = clean_text(chunk)
         if not cleaned_chunk:
+            continue        
+        try:
+            # BLACKLISTED_START_WORDS = load_stopwords(BLACKLIST_FILE_PATH)
+            annotated_chunk = VNCORE_MODEL.annotate_text(cleaned_chunk)
+        except Exception as e:
+            if "java.lang.ArrayIndexOutOfBoundsException" in str(e):
+                logger.warning(f"VnCoreNLP annotation failed for a chunk with ArrayIndexOutOfBoundsException, skipping it. Error: {e}")
+                print(f"VnCoreNLP annotation failed for a chunk with ArrayIndexOutOfBoundsException, skipping it. Error: {e}")
+            else:
+                logger.error(f"An unexpected error occurred during VnCoreNLP annotation, skipping chunk. Error: {e}")
+                print(f"An unexpected error occurred during VnCoreNLP annotation, skipping chunk. Error: {e}")
             continue
-        # BLACKLISTED_START_WORDS = load_stopwords(BLACKLIST_FILE_PATH)
-        annotated_chunk = VNCORE_MODEL.annotate_text(cleaned_chunk)
+
         keywords_from_chunk = extract_keywords_2(annotated_chunk)
         
         for keyword in keywords_from_chunk:
@@ -448,15 +479,16 @@ def get_keywords_for_document(title, content):
                 final_keywords_for_article.append(keyword)
     
     return final_keywords_for_article
+    # return []  # DEBUG: Tạm thời vô hiệu hóa trích xuất từ khoá
 
-def upgrade_extract_keyword_record(es, target_index_alias, start_time_str, end_time_str):
+def upgrade_extract_keyword_record(es, target_index_alias, start_time_str, end_time_str, collection_type):
     """
     Truy vấn 'posts' trong ngày, trích xuất từ khóa và đẩy sang index mới.
     Sử dụng global 'es' client.
     """
     index_root = "posts"
-    batch_size = 500
-    bulk_batch_size = 1000
+    batch_size = 4000
+    bulk_batch_size = 4000
 
     # time_current = datetime.now()
     # start_of_day = time_current.replace(hour=0, minute=0, second=0, microsecond=0)
@@ -478,7 +510,7 @@ def upgrade_extract_keyword_record(es, target_index_alias, start_time_str, end_t
             "bool": {
                 "filter": [
                     {"range": {"created_time": {"gte": start_of_day, "lte": end_of_day}}},
-                    {"term": {"type.keyword": "electronic media"}}
+                    {"term": {"type": collection_type}}
                 ]
             }
         },
@@ -489,9 +521,9 @@ def upgrade_extract_keyword_record(es, target_index_alias, start_time_str, end_t
     records_to_bulk = []
     total_processed = 0
     
-    logger.info(f"Bắt đầu trích xuất từ index '{index_root}' (Loại: 'electronic media')")
+    logger.info(f"Bắt đầu trích xuất từ index '{index_root}' (Loại: '{collection_type}')")
     logger.info(f"Phạm vi thời gian: {start_of_day} TỚI {end_of_day}")
-    print(f"Bắt đầu trích xuất từ index '{index_root}' (Loại: 'electronic media')")
+    print(f"Bắt đầu trích xuất từ index '{index_root}' (Loại: '{collection_type}')")
     print(f"Phạm vi thời gian: {start_of_day} TỚI {end_of_day}")
     try:
         while True:
