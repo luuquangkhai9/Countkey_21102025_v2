@@ -1,0 +1,47 @@
+      "buckets": [
+        {
+          "key": "facebook page",
+          "doc_count": 20355678
+        },
+        {
+          "key": "youtube video",
+          "doc_count": 5165340
+        },
+        {
+          "key": "tiktok video",
+          "doc_count": 4351837
+        },
+        {
+          "key": "facebook group",
+          "doc_count": 932646
+        },
+        {
+          "key": "electronic media",
+          "doc_count": 835034
+        },
+        {
+          "key": "forums post",
+          "doc_count": 23756
+        },
+        {
+          "key": "tiktok photo",
+          "doc_count": 2443
+        },
+        {
+          "key": "voz post",
+          "doc_count": 731
+        },
+        {
+          "key": "reddit post",
+          "doc_count": 16
+        },
+        {
+          "key": "otofun post",
+          "doc_count": 10
+        },
+        {
+          "key": "xamvn post",
+          "doc_count": 4
+        }
+      ]
+    }
