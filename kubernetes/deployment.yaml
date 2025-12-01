@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: countkey-deployment
+  labels:
+    app: countkey
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: countkey
+  template:
+    metadata:
+      labels:
+        app: countkey
+    spec:
+      containers:
+      - name: countkey
+        image: quangkhai013/countkey_21102025_v2-api:v1.0.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 55555
+        resources:
+          requests:
+            memory: "4Gi" # Tăng RAM vì ứng dụng chạy cả Python và Java (VnCoreNLP)
+            cpu: "4000m"  # Yêu cầu đảm bảo 4 Core CPU dành riêng cho Pod này
+          limits:
+            memory: "8Gi"
+            cpu: "8000m"  # Cho phép burst lên tối đa 8 Core khi xử lý nặng
+            nvidia.com/gpu: 1 # Yêu cầu 1 GPU NVIDIA
+        envFrom:
+        - configMapRef:
+            name: countkey-config
+        - secretRef:
+            name: countkey-secret
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%        # Cho phép tạo thêm tối đa 25% pod mới (vượt quá số lượng mong muốn) trong quá trình update
+      maxUnavailable: 25%  # Cho phép tối đa 25% pod không khả dụng trong quá trình update
+  revisionHistoryLimit: 10 # Giữ lại 10 phiên bản lịch sử để có thể rollback nếu cần

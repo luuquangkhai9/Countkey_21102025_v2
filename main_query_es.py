@@ -18,8 +18,10 @@ from keyword_save_es import  load_data_to_elasticsearch_kw_a, bulk_data_to_elast
 
 load_dotenv()
 
-VNCORE_MODEL_DIR = r'/home/ubuntu/Documents/Countkey_21102025_v2/vncorenlp'
-BLACKLIST_FILE_PATH = r"/home/ubuntu/Documents/Countkey_21102025_v2/blacklist_keywords.txt"
+# Đường dẫn tuyệt đối cho VnCoreNLP trong container
+import os
+VNCORE_MODEL_DIR = os.path.join(os.getcwd(), 'vncorenlp')
+BLACKLIST_FILE_PATH = os.path.join(os.getcwd(), "blacklist_keywords.txt")
 
 
 # Lấy URL Elasticsearch từ biến môi trường
@@ -447,7 +449,7 @@ def get_keywords_for_document(title, content):
 
     chunks = TEXT_SPLITTER.split_text(combined_text)
 
-    if len(chunks) > 3:
+    if len(chunks) > 4:
         logger.warning(f"  Bài viết có {len(chunks)} chunks. Chỉ xử lý chunk đầu tiên.")
         chunks = chunks[:1] 
     
@@ -551,6 +553,8 @@ def upgrade_extract_keyword_record(es, target_index_alias, start_time_str, end_t
                         new_doc[field] = doc[field]
                 
                 new_doc['key_word_extract'] = keywords
+                new_doc['content'] = ""  # Xóa nội dung gốc để tiết kiệm không gian lưu trữ
+                
                 records_to_bulk.append(new_doc)
                 total_processed += 1
 

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: countkey-config
+data:
+  REDIS_HOST: "10.11.32.21"
+  REDIS_PORT: "30106"
+  API_HOST: "0.0.0.0"
+  API_PORT: "55555"
+  MONGOS_PORT: "30000"
+  DAY_RUN_AGAIN: "30"

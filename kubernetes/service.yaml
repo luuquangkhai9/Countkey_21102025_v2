@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: countkey-service
+spec:
+  selector:
+    app: countkey
+  ports:
+    - protocol: TCP
+      port: 55555
+      targetPort: 55555
+  type: ClusterIP

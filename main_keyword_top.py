@@ -19,162 +19,13 @@ from collections import defaultdict
 
 from get_topic_kw import query_topic_id_grouped_by_tenant
 
-# def CheckBig(arrcheck):
-#     min_value = min(arrcheck)
-#     if min_value < 1:
-#         return False
-#     if arrcheck[6] >min_value*3.2:
-#         return True
-#     else:
-#         return False
-def CheckBig(arrcheck):
-    min_value = min(arrcheck)
-    if min_value < 1:
-        return False
-    if arrcheck[6] >min_value + 3:
-        return True
-    else:
-        return False
-
-# def CheckBig(arrcheck):
-#     for ar in arrcheck:
-#         if ar < 1:
-#             return False
-#     if arrcheck[6] >2.5:
-#         return True
-#     else:
-#         return False
-# def CheckBig2(arrcheck):
-#     count_out_25 = sum(1 for ar in arrcheck if ar == 0)
-#     count_in_6 = sum(1 for ar in arrcheck[:7] if ar <= 6)
-#     if count_out_25 >= 3  and count_in_6 >=5:
-#         return True
-#     else:
-#         return False
-
-def CheckSmall(arrcheck):
-    for ar in arrcheck:
-        if ar > 1:
-            return False
-    return True
-def CheckPre(arrcheck):
-    bRet = False
-    for ar in arrcheck:
-        if ar < 2:
-            bRet = True
-            break
-    if bRet == True:
-        if ((arrcheck[6]-min(arrcheck))>0.4) and (arrcheck[6]>2) and (arrcheck[6]>arrcheck[5]):
-            return True
-        else:
-            return False          
-    else:
-        return False
-def CheckOld(arrcheck):
-    bRet = False
-    for ar in arrcheck:
-        if ar > 2:
-            bRet = True
-            break
-    if bRet == True:
-        if arrcheck[6]<2 :
-            return True
-        else:
-            return False          
-    else:
-        return False
-def CheckTrend(arrcheck):
-    min_value = min(arrcheck)
-    count_below_half = sum(1 for ar in arrcheck if ar <= 0.5)
-    if count_below_half >= 4:
-        if arrcheck[6] - min_value >= 1.1:
-            return True
-
-    elif count_below_half >= 3:
-        if arrcheck[6] - min_value >= 1.4:
-            return True
-
-    elif count_below_half >= 2:
-        if arrcheck[6] - min_value >= 1.6:
-            return True
-    elif count_below_half == 1:
-        if arrcheck[6] - min_value >= 1.8:
-            return True
-    elif min_value < 1:
-        if arrcheck[6] > 2:
-            return True
-
-    return False
-
-def Check(keywordtop):
-    categorized_keywords = {
-        'BigTrend': [],
-        'Trend': [],
-        'PreTrend': [],
-        'OldTrend': [],
-        'Other': [],
-        'Small': []
-        
-    }
-
-    for arr in keywordtop:
-        if CheckSmall(arr['percentage']):
-            # continue  
-            categorized_keywords['Small'].append({'keyword': arr['keyword'], 'percentage': arr['percentage'][-1] ,'record': arr['record'] ,'score': arr['score'] ,  'isTrend': True})
-
-        if CheckBig(arr['percentage']):
-            categorized_keywords['BigTrend'].append({'keyword': arr['keyword'], 'percentage': arr['percentage'][-1] ,'record': arr['record'] ,'score': arr['score'] ,  'isTrend': True})
-        elif CheckTrend(arr['percentage']):
-            categorized_keywords['Trend'].append({'keyword': arr['keyword'], 'percentage': arr['percentage'][-1] ,'record': arr['record'] ,'score': arr['score'], 'isTrend': True})
-        elif CheckPre(arr['percentage']):
-            categorized_keywords['PreTrend'].append({'keyword': arr['keyword'], 'percentage': arr['percentage'][-1] ,'record': arr['record'] ,'score': arr['score'], 'isTrend': False})
-        # elif CheckOld(arr['percentage']):
-        #     categorized_keywords['OldTrend'].append({'keyword': arr['keyword'], 'percentage': arr['percentage'][-1] ,'record': arr['record'] , 'isTrend': True})
-        else:
-            categorized_keywords['Other'].append({'keyword': arr['keyword'], 'percentage': arr['percentage'][-1] ,'record': arr['record'] ,'score': arr['score'], 'isTrend': False})
-
-    for category in categorized_keywords:
-        categorized_keywords[category].sort(key=lambda x: x['score'], reverse=True)
-    
-    sorted_keywords = []
-    for category in ['BigTrend', 'Trend', 'PreTrend', 'Other', "Small"]:
-        sorted_keywords.extend(categorized_keywords[category])
-
-    return sorted_keywords
-def check_big2(results, keyword, topic_id):
-    #actual_days = len(results)
-    #missing_days = 20 - actual_days 
-    
-    count_out_top20 = 0
-    count_in_top6 = 0
-    
-    for record in results:
-        if record['topic_id']!= topic_id:
-            continue
-        topic_data = record['keywords_top']
-        keywords = [kw_info['keyword'] for kw_info in topic_data]
-        try:
-            if keyword not in keywords[:20]:
-                count_out_top20 += 1
-        except : 
-            if keyword not in keywords:
-                count_out_top20 += 1
-        try: 
-            if keyword in keywords[:6]:
-                count_in_top6 += 1
-        except:
-            if keyword in keywords:
-                count_in_top6 += 1
-
-    #count_out_top20 += missing_days
-
-    if count_out_top20 >= 3 and count_in_top6 >= 4:
-        return True
-    return False
+# Định nghĩa đường dẫn base directory
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def is_not_blackword(word):
     
-    with open('black_list.txt', 'r', encoding='utf-8') as f:
+    blacklist_path = os.path.join(BASE_DIR, 'black_list.txt')
+    with open(blacklist_path, 'r', encoding='utf-8') as f:
         black_words = f.read().splitlines()
 
     if word in black_words:
@@ -185,33 +36,6 @@ def is_not_blackword(word):
     
     return True
 
-# def is_keyword_selected(keyword, historical_percentages, daily_keywords, check_date_str):
-#     percentage_on_check_date = next((item['percentage'] for item in daily_keywords if item['keyword'] == keyword), 0)    
-    
-#     # other_dates_percentages = [
-#     #     historical_percentages.get(i, 0)  # Ensure a default value of 0 if the topic key is missing
-#     #     for i in range(6)  # Chỉ lấy 6 ngày trước đó, bỏ qua ngày hiện tại
-#     # ]
-#     for key, value in historical_percentages.items():
-#         if isinstance(value, list):
-#             other_dates_percentages = value[:6]  # Chỉ lấy 6 ngày trước đó, bỏ qua ngày hiện tại
-#             break
-    
-#     if not other_dates_percentages:
-#         other_dates_percentages = [0] * 6
-
-#     count_higher_09 = sum(perc >= 0.88 for perc in other_dates_percentages)
-#     count_higher_11 = sum(perc >= 1.1 for perc in other_dates_percentages)
-#     count_higher_14 = sum(perc >= 1.4 for perc in other_dates_percentages)
-
-#     if count_higher_09 >= 3 and count_higher_11 >= 2:
-#         min_other_percentage = min(other_dates_percentages) if other_dates_percentages else 0
-#         if percentage_on_check_date > 3 * min_other_percentage and count_higher_14 <= 5:
-#             return True
-#         else:
-#             return False
-#     else:
-#         return True
 def is_keyword_selected(keyword, historical_percentages, daily_keywords, check_date_str):
     percentage_on_check_date = next((item['percentage'] for item in daily_keywords if item['keyword'] == keyword), 0)    
     
@@ -399,8 +223,7 @@ def calculate_top_keywords_with_topic_2_es(es, input_date, data, index_name, pla
     try:
 
         list_topic =  query_topic_id_grouped_by_tenant()
-        topic_to_tenants = {}
-
+        
         #for item in list_topic:
         #    tenant = item["tenant"]
         #    for topic in item["topic_id"]:
@@ -415,11 +238,13 @@ def calculate_top_keywords_with_topic_2_es(es, input_date, data, index_name, pla
         return 
 
     try:
-        with open(r'blacklist_hashtag.txt', 'r', encoding='utf-8') as f:
+        blacklist_path = os.path.join(BASE_DIR, 'vncorenlp', 'blacklist_hashtag.txt')
+        with open(blacklist_path, 'r', encoding='utf-8') as f:
             blacklist = set(line.strip() for line in f if line.strip())
     except Exception as e:
         print(f"Error reading blacklist file: {e}")
         blacklist = set()
+
 
 
 
@@ -894,8 +719,11 @@ def calculate_top_keywords_with_trend_logic_topic(es_db, current_day, initial_in
             if not keywords_trend_data:
                 continue
 
-            # Sort by score and set isTrend for top 50
+            # Sort by score and take top 100 keywords
             keywords_trend_data.sort(key=lambda x: x['score'], reverse=True)
+            keywords_trend_data = keywords_trend_data[:100]
+            
+            # Set isTrend for top 50 only
             for i, item in enumerate(keywords_trend_data):
                 item['isTrend'] = i < 50
 
