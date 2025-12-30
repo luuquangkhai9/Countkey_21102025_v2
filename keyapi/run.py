@@ -4,39 +4,28 @@ import re
 import json
 # from langdetect import detect 
 # from langdetect import detect as detect2
-from main_query_es import  query_keyword_with_topic, load_stopwords, upgrade_extract_keyword_record
+from main_query_es import  query_keyword_with_topic
 from collections import defaultdict
 from main_keyword_top import  calculate_top_keywords_with_topic_2_es, calculate_top_keywords_with_trend_logic_topic
 import time
 from elasticsearch import Elasticsearch
-
+from datetime import datetime, timedelta
 from time import sleep
 from keyword_save_es import  load_data_to_elasticsearch_kw_a
 import logging
-from logging.handlers import RotatingFileHandler
-
 import urllib3
 import redis
 from dotenv import load_dotenv
 import os
-from datetime import datetime, timedelta
 load_dotenv()
 
-# Cấu hình RotatingFileHandler
-handler = RotatingFileHandler(
-    "run.log", 
-    maxBytes=10*1024*1024,  # Giới hạn 10MB (10 * 1024 * 1024 bytes)
-    backupCount=5,          # Giữ lại tối đa 5 file cũ (run.log.1, run.log.2...)
-    encoding='utf-8'
-)
-
-# Cấu hình logging
 logging.basicConfig(
-    handlers=[handler], # Sử dụng handler vừa tạo thay vì filename trực tiếp
+    #filename="D:/ChienND/Team AI Security/TuDH/hastag/run.log",
+     filename="run.log",
+
     level=logging.INFO,
     format="%(asctime)s:%(levelname)s:%(message)s"
 )
-
 logger = logging.getLogger("run")
 
 print(logging.getLogger("elasticsearch").handlers)
@@ -73,12 +62,6 @@ es_db = Elasticsearch([elasticsearch_db_url], request_timeout=100)
 
 historical_data_index = "key-osint1-current"
 historical_data_index_trends = "key-trend-current"
-historical_data_index_trends_v2 = "key-trend-current-v2"
-index_name_trend_v2 = "key-trend-v2-000001"
-alias_name = "keyword-extract-current"
-# initial_index = "keyword-extract-000002"
-
-
 keyword_top_file = 'keyword_percentages_main_title.json'
 keyword_extract_file = 'keyword_test_27.1_filter_new_3.json'
 keyword_today_file = 'keyword_percentages_main_title_noun_phase.json'
@@ -323,17 +306,13 @@ def summarize_keywords_in_intervals(type ,  old_extracted_keywords):
                                                                       
         
 def run_keyword_today():
-    DAY_RUN_AGAIN = int(os.getenv("DAY_RUN_AGAIN"))
-    current_day = datetime.now()-timedelta(days = DAY_RUN_AGAIN)
-    # current_day = datetime.now()-timedelta(days = 1)
+    current_day = datetime.now()-timedelta(days = 7)
     #current_day = datetime.now()
 
     global restart_needed  # Sử dụng biến toàn cục
-
+    #testdebug
     collections = ['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit']
-    #  "type": ["facebook", "tiktok", "youtube", "voz", "xamvn", "otofun", "media", "reddit"],
-
-    # collections = ['media']
+    #collections = ['tiktok','media']
 
     # query_data_files = [query_data_file_fb, query_data_file_tik, query_data_file_ytb, query_data_file_voz, query_data_file_xamvn, query_data_file_oto, query_data_file_media]
     #top_keywords_summarys = [top_keywords_summary_fb, top_keywords_summary_tik, top_keywords_summary_ytb, top_keywords_summary_voz, top_keywords_summary_xamvn, top_keywords_summary_oto, top_keywords_summary_media, top_keywords_summary_reddit]
@@ -341,99 +320,39 @@ def run_keyword_today():
         # now = datetime.now() - timedelta(days=114)
         now = datetime.now()
         #empty_collections_count = 0  # Biến đếm số lượng collections có len(top_keywords_summary) == 0
-#
-        if now.day != current_day.day or now.month != current_day.month:
+
+        if now.day != current_day.day:
  
             while current_day < now:
                 start_of_day = current_day.replace(hour=0, minute=0, second=0, microsecond=0)
                 end_of_interval = current_day.replace(hour=23, minute=59, second=59, microsecond=59)
 
-                current_day_origin = current_day.replace( minute=0, second=0, microsecond=0)
-
-                if current_day.day == now.day and current_day.month == now.month:
-                    print(start_of_day.strftime("%m/%d/%Y %H:%M:%S"))
-                    print(current_day_origin.strftime("%m/%d/%Y %H:%M:%S"))
-                    logging.info(f"Processing \"trending key\" and \"top key\" for present from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')}")
-                    print(f"Processing \"trending key\" and \"top key\" for present from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')}")
-
-                    for coll in collections:
-                        print(f"Đang xử lý collection: {coll}")
-                        current_day_str = start_of_day.strftime("%m/%d/%Y")
-
-                        #phần trích xuất từ khoá và lưu từ khoá cho bài toán top từ khoá
-                        logging.info(f"Processing \"top key\" for present from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')}")
-                        print(f"Processing \"top key\" for present from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')}")
-                            #trích xuất từ khoá cho bài toán top từ khoá
-                        extracted_keywords = query_and_extract_keywords(es_db , start_of_day.strftime("%m/%d/%Y %H:%M:%S"), end_of_interval.strftime("%m/%d/%Y %H:%M:%S") , coll )
-                        #     # #tính toán top từ khoá
-                        current_day_str = start_of_day.strftime("%m/%d/%Y")
-                        calculate_top_keywords_with_topic_2_es(es_db , current_day_str, extracted_keywords, historical_data_index, coll)
-
-                        #------phần trích xuất từ khoá và đề xuất xu hướngcho bài toán trending
-                        logging.info(f"Processing \"trending key\" for present from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')} to previous hour 24h")
-                        print(f"Processing \"trending key\" for present from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')} to previous hour 24h")
-                            #trích xuất từ khoá cho bài toán trending
-                        upgrade_extract_keyword_record(es_db, initial_index, start_of_day.strftime("%m/%d/%Y %H:%M:%S"), end_of_interval.strftime("%m/%d/%Y %H:%M:%S"), coll)
-                            #tính toán xu hướng                  
-                        calculate_top_keywords_with_trend_logic_topic(es_db, current_day_origin, alias_name, index_name_trend_v2 , coll )
-
-                else:
-                    print(start_of_day.strftime("%m/%d/%Y %H:%M:%S"))
-                    print(end_of_interval.strftime("%m/%d/%Y %H:%M:%S"))
-                    logging.info(f"Processing \"top key\" and \"trending key\" interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
-                    print(f"Processing \"top key\" and \"trending key\" interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
-
-                    for coll in collections:
-                        print(f"Đang xử lý collection: {coll}")
-                        current_day_str = start_of_day.strftime("%m/%d/%Y")
-
-                        #phần trích xuất từ khoá và lưu từ khoá cho bài toán top từ 
-                        logging.info(f"Processing \"top key\" interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
-                        print(f"Processing \"top key\" interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
-                            #trích xuất từ khoá cho bài toán top từ khoá
-                        extracted_keywords = query_and_extract_keywords(es_db , start_of_day.strftime("%m/%d/%Y %H:%M:%S"), end_of_interval.strftime("%m/%d/%Y %H:%M:%S") , coll )
-                        #     # #tính toán top từ khoá
-                        calculate_top_keywords_with_topic_2_es(es_db , current_day_str, extracted_keywords, historical_data_index, coll)
-
-                        #------phần trích xuất từ khoá và đề xuất xu hướngcho bài toán trending
-                        logging.info(f"Processing \"trending key\" interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
-                        print(f"Processing \"trending key\" interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
-                            #trích xuất từ khoá cho bài toán trending
-                        upgrade_extract_keyword_record(es_db, initial_index, start_of_day.strftime("%m/%d/%Y %H:%M:%S"), end_of_interval.strftime("%m/%d/%Y %H:%M:%S"), coll)
-                            #tính toán xu hướng                  
-                        calculate_top_keywords_with_trend_logic_topic(es_db, current_day_str, alias_name, index_name_trend_v2 , coll )
-
+                print(start_of_day.strftime("%m/%d/%Y %H:%M:%S"))
+                print(end_of_interval.strftime("%m/%d/%Y %H:%M:%S"))
+                logging.info(f"Processing interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
+                print(f"Processing interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
+                for coll in collections:
+                    extracted_keywords = query_and_extract_keywords(es_db , start_of_day.strftime("%m/%d/%Y %H:%M:%S"), end_of_interval.strftime("%m/%d/%Y %H:%M:%S") , coll )
+                    current_day_str = start_of_day.strftime("%m/%d/%Y")
+                    calculate_top_keywords_with_topic_2_es(es_db , current_day_str, extracted_keywords, historical_data_index, coll)
+                    calculate_top_keywords_with_trend_logic_topic(current_day_str, es_db, historical_data_index,coll )
                 current_day +=timedelta(days=1)
-                time.sleep(10)
-        
+                time.sleep(60)
         
         if now.hour > interval_hours or now.hour == interval_hours:
 
             start_of_day = now.replace(hour=0, minute=0, second=0, microsecond=0)
             end_of_interval = now.replace( minute=0, second=0, microsecond=0)
 
-            current_day_origin = now.replace( minute=0, second=0, microsecond=0)
-
             print(start_of_day.strftime("%m/%d/%Y %H:%M:%S"))
             print(end_of_interval.strftime("%m/%d/%Y %H:%M:%S"))
             logging.info(f"Processing interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
             print(f"Processing interval from {start_of_day.strftime('%m/%d/%Y %H:%M:%S')} to {end_of_interval.strftime('%m/%d/%Y %H:%M:%S')}")
             for coll in collections:
-
-                #-----phần trích xuất từ khoá và lưu từ khoá cho bài toán top từ khoá
-                    #trích xuất từ khoá cho bài toán top từ khoá
                 extracted_keywords = query_and_extract_keywords(es_db , start_of_day.strftime("%m/%d/%Y %H:%M:%S"), end_of_interval.strftime("%m/%d/%Y %H:%M:%S") , coll )
-                    # #tính toán top từ khoá
                 current_day_str = start_of_day.strftime("%m/%d/%Y")
                 calculate_top_keywords_with_topic_2_es(es_db , current_day_str, extracted_keywords, historical_data_index, coll)
-
-                #------phần trích xuất từ khoá và đề xuất xu hướngcho bài toán trending
-                    #trích xuất từ khoá cho bài toán trending
-                upgrade_extract_keyword_record(es_db, initial_index, start_of_day.strftime("%m/%d/%Y %H:%M:%S"), end_of_interval.strftime("%m/%d/%Y %H:%M:%S"), coll)
-                    #tính toán xu hướng
-                logging.info(f"Processing trending key for present from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')} to previous hour 24h")
-                print(f"Processing trending key for present from current_day_origin {current_day_origin.strftime('%m/%d/%Y %H:%M:%S')} to previous hour 24h")
-                calculate_top_keywords_with_trend_logic_topic(es_db, current_day_origin, alias_name, index_name_trend_v2 ,coll )
+                calculate_top_keywords_with_trend_logic_topic(current_day_str, es_db, historical_data_index,coll )
         current_day = datetime.now()
         time.sleep(2*3600)
 
@@ -456,62 +375,67 @@ if __name__ == "__main__":
     #     f.write("run.py started\n")
     logging.info("Program started")
 
-    # index_name_trend_fn = "key-trend-current"
+    index_name_trend_fn = "key-trend-current"
 
-    # template_body_trend = {
-    # "index_patterns": ["key-trend-*"],
-    # "priority": 200,
-    # "template": {
-    #     "settings": {
-    #         "number_of_shards": 1,
-    #         "number_of_replicas": 1,
-    #         "index.mapping.total_fields.limit": 10000
-    #     },
-    #     "mappings": {
-    #         "dynamic": "false",
-    #         "properties": {
-    #             "date": {
-    #                 "type": "date",
-    #                 "format": "MM_dd_yyyy||MM/dd/yyyy||strict_date||epoch_millis"
-    #             },
-    #             "type":      {"type": "keyword"},
-    #             "tenant_id": {"type": "keyword"},
-    #             "topic_id":  {"type": "keyword"},
-    #             "keywords_trend": {
-    #                 "type": "nested",
-    #                 "properties": {
-    #                     "keyword":    {"type": "keyword"},
-    #                     "percentage": {"type": "float"},
-    #                     "record":     {"type": "integer"},
-    #                     "score":      {"type": "float"},
-    #                     "isTrend":    {"type": "boolean"}
-    #                 }
-    #             }
-    #         }
-    #     },
-    #     "aliases": {
-    #         "key-trend-current": {}
-    #     }
-    #   }
-    #   }
-    # if not es_db.indices.exists_index_template(name="key-trend-template"):
-    #     es_db.indices.put_index_template(name="key-trend-template", body=template_body_trend)
-    #     print("✅ Created index template: key-trend-template")
-    # else:
-    #     print("ℹ️ Template already exists, skipping.")
+    template_body_trend = {
+    "index_patterns": ["key-trend-*"],
+    "priority": 200,
+    "template": {
+        "settings": {
+            "number_of_shards": 1,
+            "number_of_replicas": 1,
+            "index.mapping.total_fields.limit": 10000
+        },
+        "mappings": {
+            "dynamic": "false",
+            "properties": {
+                "date": {
+                    "type": "date",
+                    "format": "MM_dd_yyyy||MM/dd/yyyy||strict_date||epoch_millis"
+                },
+                "type":      {"type": "keyword"},
+                "tenant_id": {"type": "keyword"},
+                "topic_id":  {"type": "keyword"},
+                "keywords_trend": {
+                    "type": "nested",
+                    "properties": {
+                        "keyword":    {"type": "keyword"},
+                        "percentage": {"type": "float"},
+                        "record":     {"type": "integer"},
+                        "score":      {"type": "float"},
+                        "isTrend":    {"type": "boolean"}
+                    }
+                }
+            }
+        },
+        "aliases": {
+            "key-trend-current": {}
+        }
+      }
+      }
+    if not es_db.indices.exists_index_template(name="key-trend-template"):
+        es_db.indices.put_index_template(name="key-trend-template", body=template_body_trend)
+        print("✅ Created index template: key-trend-template")
+    else:
+        print("ℹ️ Template already exists, skipping.")
 
-    # # Kiểm tra nếu index đã tồn tại, nếu chưa thì tạo mới
-    # index_name_trend = "key-trend-000001"
-    # if not es_db.indices.exists(index=index_name_trend):
-    #     es_db.indices.create(index=index_name_trend, body={
-    #     "aliases": {
-    #         "key-trend-current": {"is_write_index": True}
-    #     }
-    # })
-    #     print(f"✅ Created index: {index_name_trend}")
-    # else:
-    #     print(f"ℹ️ Index {index_name_trend} already exists.")
+    # Kiểm tra nếu index đã tồn tại, nếu chưa thì tạo mới
+    index_name_trend = "key-trend-000001"
+    if not es_db.indices.exists(index=index_name_trend):
+        es_db.indices.create(index=index_name_trend, body={
+        "aliases": {
+            "key-trend-current": {"is_write_index": True}
+        }
+    })
+        print(f"✅ Created index: {index_name_trend}")
+    else:
+        print(f"ℹ️ Index {index_name_trend} already exists.")
 
+    #if not es_db.indices.exists(index=index_name_trend):
+    #    es_db.indices.create(index=index_name_trend, body=mapping_trend)
+    #    print(f"Index {index_name_trend} created successfully")
+    #else:
+    #    print(f"Index {index_name_trend} already exists")
     sleep(1)
     index_name_fn = "key-osint1-current"    
     
@@ -576,210 +500,5 @@ if __name__ == "__main__":
         print(f"✅ Created index: {index_name}")
     else:
         print(f"ℹ️ Index {index_name} already exists.")
-
-
-#-----------------------------
-#  Index  chứa lại các bài viết từ posts và được thêm trường trích xuất từ khoá
-# -------------------------------- 
-
-    template_name = "keyword-extract-template"
-    index_pattern = "keyword-extract-*"
-    initial_index = "keyword-extract-000002"
-    alias_name = "keyword-extract-current"
-
-    # 1. Định nghĩa Index Template
-    template_body = {
-        "index_patterns": [index_pattern],
-        "priority": 200,
-        "template": {
-            "settings": {
-                "number_of_shards": 1,
-                "number_of_replicas": 1,
-                "index.mapping.total_fields.limit": 10000
-            },
-            "mappings": {
-
-                "dynamic": "false", 
-                "properties": {
-                    "id": {
-                        "type": "text",
-                        "fields": {
-                            "keyword": { "type": "keyword", "ignore_above": 256 }
-                        }
-                    },
-
-                    "created_time": {
-                        "type": "date",
-                        "format": "MM/dd/yyyy HH:mm:ss"
-                    },
-                    "time_crawl": {
-                        "type": "text",
-                        "fields": {
-                            "keyword": { "type": "keyword", "ignore_above": 256 }
-                        }
-                    },
-                    "type": { 
-                        "type": "text",
-                        "fields": {
-                            "keyword": { "type": "keyword", "ignore_above": 256 }
-                        }
-                    },
-                    "field_classify": {
-                        "type": "text",
-                        "fields": {
-                            "keyword": { "type": "keyword", "ignore_above": 256 }
-                        }
-                    },
-                    "link": { 
-                        "type": "text",
-                        "fields": {
-                            "keyword": { "type": "keyword", "ignore_above": 512 }
-                        } 
-                    },
-                    "author": { 
-                        "type": "text",
-                        "fields": {
-                            "keyword": { "type": "keyword", "ignore_above": 256 }
-                        }
-                    },
-                    "topic_id": { 
-                        "type": "text",
-                        "fields": {
-                            "keyword": { "type": "keyword", "ignore_above": 256 }
-                        }
-                    },
-                    "tenancy_ids": {
-                        "type": "text",
-                        "fields": {
-                            "keyword": { "type": "keyword", "ignore_above": 256 }
-                        }
-                    },
-                    "title": {
-                        "type": "text",
-                        "fields": {
-                            "keyword": { "type": "keyword", "ignore_above": 256 }
-                        }
-                    },
-                    "content": {
-                        "type": "text",
-                         "fields": {
-                            "keyword": { "type": "keyword", "ignore_above": 256}
-                        }
-                    },
-                    
-                    # --- Trường mới cho bài toán con ---
-                    "key_word_extract": {
-                        "type": "keyword"
-                    }
-                }
-            },
-            "aliases": {
-                alias_name: {}
-            }
-        }
-    }
-    
-    
-    if not es_db.indices.exists_index_template(name=template_name):
-        es_db.indices.put_index_template(name=template_name, body=template_body)
-        print(f"Created index template: {template_name}")
-    else:
-        print(f"Template {template_name} already exists, skipping creation.")
-
-    if not es_db.indices.exists(index=initial_index):
-        es_db.indices.create(
-            index=initial_index,
-            body={
-                "aliases": {
-                    alias_name: {
-                        "is_write_index": True 
-                    }
-                }
-            }
-        )
-        print(f"Created index: {initial_index} and set as write index for alias {alias_name}")
-    else:
-        print(f"Index {initial_index} already exists.")
-
-
-
-
-#-----------------------------
-#Index chứa từ khoá trending v2
-#Thực hiện định nghĩa lại và bổ sung thêm các trường:
-#percentage: tỷ lệ xuất hiện của từ khoá trong tổng số bài viết chứa từ khoá trong ngày
-#record: số bài viết chứa từ khoá trong ngày
-#score: điểm số xu hướng
-#isTrend: có phải xu hướng hay không
-#avg_paper_count_baseline: trung bình số bài viết chứa từ khoá trong 7 ngày trước đó
-#stddev_paper_count_baseline: độ lệch chuẩn số bài viết chứa từ khosa trong 7 ngày trước đó
-#------------------------------
-
-
-    index_name_trend_fn_v2 = "key-trend-current-v2"
-
-    template_body_trend_v2 = {
-    "index_patterns": ["key-trend-v2-*"],
-    "priority": 300,
-    "template": {
-        "settings": {
-            "number_of_shards": 1,
-            "number_of_replicas": 1,
-            "index.mapping.total_fields.limit": 10000
-        },
-        "mappings": {
-            "dynamic": "false",
-            "properties": {
-                "date": {
-                    "type": "date",
-                    "format": "MM_dd_yyyy||MM/dd/yyyy||strict_date||epoch_millis"
-                },
-                "type":      {"type": "keyword"},
-                "tenant_id": {"type": "keyword"},
-                "topic_id":  {"type": "keyword"},
-                "keywords_trend": {
-                    "type": "nested",
-                    "properties": {
-                        "keyword":    {"type": "keyword"},
-                        "percentage": {"type": "float"},
-                        "record":     {"type": "integer"},
-                        "score":      {"type": "float"},
-                        "isTrend":    {"type": "boolean"},
-                        "avg_paper_count_baseline": {"type": "float"},
-                        "stddev_paper_count_baseline": {"type": "float"}
-                    }
-                }
-            }
-        },
-        "aliases": {
-            "key-trend-current-v2": {}
-        }
-      }
-      }
-    if not es_db.indices.exists_index_template(name="key-trend-template-v2"):
-        es_db.indices.put_index_template(name="key-trend-template-v2", body=template_body_trend_v2)
-        print("Created index template: key-trend-template-v2")
-    else:
-        print("Template already exists, skipping.")
-
-
-
-    index_name_trend_v2 = "key-trend-v2-000001"
-    if not es_db.indices.exists(index=index_name_trend_v2):
-        es_db.indices.create(index=index_name_trend_v2, body={
-        "aliases": {
-            "key-trend-current-v2": {"is_write_index": True}
-        }
-    })
-        print(f"Created index: {index_name_trend_v2}")
-    else:
-        print(f"Index {index_name_trend_v2} already exists.")
-
-
-
-
-
-
-
     main_loop()
 

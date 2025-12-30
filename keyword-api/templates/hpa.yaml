@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "countkey_deploy.fullname" . }}
+  name: {{ include "keyword-api.fullname" . }}
   labels:
-    {{- include "countkey_deploy.labels" . | nindent 4 }}
+    {{- include "keyword-api.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "countkey_deploy.fullname" . }}
+    name: {{ include "keyword-api.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

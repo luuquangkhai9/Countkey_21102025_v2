@@ -47,7 +47,12 @@ logging.getLogger("urllib3").addFilter(ExcludeHttpLogsFilter())
 logger.info(f"Đang khởi tạo VnCoreNLP từ: {VNCORE_MODEL_DIR} (chỉ một lần)...")
 print(f"Đang khởi tạo VnCoreNLP từ: {VNCORE_MODEL_DIR} (chỉ một lần)...")
 try:
-    VNCORE_MODEL = py_vncorenlp.VnCoreNLP(save_dir=VNCORE_MODEL_DIR)
+    # Chỉ tải các annotator cần thiết (bỏ 'parse' để tiết kiệm RAM) và tăng Heap size
+    VNCORE_MODEL = py_vncorenlp.VnCoreNLP(
+        save_dir=VNCORE_MODEL_DIR, 
+        max_heap_size='-Xmx4g',
+        annotators=["wseg", "pos", "ner"] 
+    )
     logger.info("✅ VnCoreNLP đã khởi tạo thành công.")
     print("✅ VnCoreNLP đã khởi tạo thành công.")
 except Exception as e:

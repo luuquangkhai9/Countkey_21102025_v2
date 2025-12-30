@@ -97,3 +97,1000 @@
 2025-09-30 11:05:14,215 - INFO - Loaded whitelist from white_list.txt. Total items: 32
 2025-09-30 11:05:14,217 - INFO - Loaded whitelist from black_list.txt. Total items: 292
 2025-09-30 11:05:14,218 - INFO - Connected to Elasticsearch.
+2025-12-01 11:40:26,458 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 11:40:26,458 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 11:40:26,459 - INFO - Connected to Elasticsearch.
+2025-12-01 11:51:45,026 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook', 'media', 'tiktok', 'youtube'], 'start_date': '11/25/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 20, 'topic_ids': [], 'tenancy_ids': []}
+2025-12-01 11:51:45,027 - WARNING - No tenancy_ids provided. Returning empty result.
+2025-12-01 11:51:45,027 - INFO - /search_keywords completed successfully in 0.00 seconds.
+2025-12-01 11:51:45,038 - INFO - Saved result to cache asynchronously: search_keywords:['facebook', 'media', 'tiktok', 'youtube']:11/25/2025:12/01/2025::trend:1:20::none
+2025-12-01 11:52:23,321 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook', 'media', 'tiktok', 'youtube'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 20, 'topic_ids': [], 'tenancy_ids': []}
+2025-12-01 11:52:23,321 - WARNING - No tenancy_ids provided. Returning empty result.
+2025-12-01 11:52:23,321 - INFO - /search_keywords completed successfully in 0.00 seconds.
+2025-12-01 11:52:23,328 - INFO - Saved result to cache asynchronously: search_keywords:['facebook', 'media', 'tiktok', 'youtube']:12/01/2025:12/01/2025::trend:1:20::none
+2025-12-01 11:54:05,185 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '09/29/2025', 'end_date': '09/29/2025', 'type_top': 'popular', 'page': 1, 'page_size': 20, 'topic_ids': ['c4927c95-2eb8-4208-a763-3daab1f9c594'], 'tenancy_ids': ['os1']}
+2025-12-01 11:54:05,208 - INFO - Elasticsearch query to key-osint1-current completed in 0.02 seconds.
+2025-12-01 11:54:05,208 - INFO - /search_keywords completed successfully in 0.02 seconds.
+2025-12-01 11:54:05,216 - INFO - Saved result to cache asynchronously: search_keywords:['media']:09/29/2025:09/29/2025:c4927c95-2eb8-4208-a763-3daab1f9c594:popular:1:20::os1
+2025-12-01 11:54:54,522 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'popular', 'page': 1, 'page_size': 20, 'topic_ids': ['c4927c95-2eb8-4208-a763-3daab1f9c594'], 'tenancy_ids': ['os1']}
+2025-12-01 11:54:54,529 - INFO - Elasticsearch query to key-osint1-current completed in 0.01 seconds.
+2025-12-01 11:54:54,530 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 11:54:54,537 - INFO - Saved result to cache asynchronously: search_keywords:['media']:12/01/2025:12/01/2025:c4927c95-2eb8-4208-a763-3daab1f9c594:popular:1:20::os1
+2025-12-01 11:55:07,800 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'popular', 'page': 1, 'page_size': 20, 'topic_ids': ['c4927c95-2eb8-4208-a763-3daab1f9c594'], 'tenancy_ids': ['A05']}
+2025-12-01 11:55:07,807 - INFO - Elasticsearch query to key-osint1-current completed in 0.01 seconds.
+2025-12-01 11:55:07,808 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 11:55:07,813 - INFO - Saved result to cache asynchronously: search_keywords:['media']:12/01/2025:12/01/2025:c4927c95-2eb8-4208-a763-3daab1f9c594:popular:1:20::A05
+2025-12-01 11:55:24,010 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trending', 'page': 1, 'page_size': 20, 'topic_ids': ['c4927c95-2eb8-4208-a763-3daab1f9c594'], 'tenancy_ids': ['A05']}
+2025-12-01 11:55:24,010 - WARNING - Invalid type_top value: trending
+2025-12-01 11:55:24,010 - INFO - /search_keywords completed successfully in 0.00 seconds.
+2025-12-01 11:55:24,015 - INFO - Saved result to cache asynchronously: search_keywords:['media']:12/01/2025:12/01/2025:c4927c95-2eb8-4208-a763-3daab1f9c594:trending:1:20::A05
+2025-12-01 11:55:27,278 - INFO - Query from general cache: search_keywords:['media']:12/01/2025:12/01/2025:c4927c95-2eb8-4208-a763-3daab1f9c594:trending:1:20::A05
+2025-12-01 11:55:27,279 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trending', 'page': 1, 'page_size': 20, 'topic_ids': ['c4927c95-2eb8-4208-a763-3daab1f9c594'], 'tenancy_ids': ['A05']}
+2025-12-01 11:55:27,279 - WARNING - Invalid type_top value: trending
+2025-12-01 11:55:27,279 - INFO - /search_keywords completed successfully in 0.00 seconds.
+2025-12-01 11:55:27,287 - INFO - Saved result to cache asynchronously: search_keywords:['media']:12/01/2025:12/01/2025:c4927c95-2eb8-4208-a763-3daab1f9c594:trending:1:20::A05
+2025-12-01 11:55:37,377 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 20, 'topic_ids': ['c4927c95-2eb8-4208-a763-3daab1f9c594'], 'tenancy_ids': ['A05']}
+2025-12-01 11:55:37,392 - INFO - Elasticsearch query to key-trend-current completed in 0.01 seconds.
+2025-12-01 11:55:37,393 - INFO - /search_keywords completed successfully in 0.02 seconds.
+2025-12-01 11:55:37,404 - INFO - Saved result to cache asynchronously: search_keywords:['media']:12/01/2025:12/01/2025:c4927c95-2eb8-4208-a763-3daab1f9c594:trend:1:20::A05
+2025-12-01 11:55:56,157 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 20, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 11:55:56,171 - INFO - Elasticsearch query to key-trend-current completed in 0.01 seconds.
+2025-12-01 11:55:56,172 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 11:55:56,179 - INFO - Saved result to cache asynchronously: search_keywords:['media']:12/01/2025:12/01/2025:all:trend:1:20::A05
+2025-12-01 12:02:23,411 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'popular', 'page': 1, 'page_size': 20, 'topic_ids': ['all'], 'tenancy_ids': ['os1']}
+2025-12-01 12:02:23,421 - INFO - Elasticsearch query to key-osint1-current completed in 0.01 seconds.
+2025-12-01 12:02:23,422 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 12:02:23,428 - INFO - Saved result to cache asynchronously: search_keywords:['media']:12/01/2025:12/01/2025:all:popular:1:20::os1
+2025-12-01 12:11:26,448 - INFO - Query from general cache: search_keywords:['media']:12/01/2025:12/01/2025:all:trend:1:20::A05
+2025-12-01 12:11:45,480 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 12:11:45,481 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 12:11:45,481 - INFO - Connected to Elasticsearch.
+2025-12-01 12:11:57,548 - INFO - Query from general cache: search_keywords:['media']:12/01/2025:12/01/2025:all:trend:1:20::A05
+2025-12-01 12:14:11,691 - INFO - Query from general cache: search_keywords:['media']:12/01/2025:12/01/2025:all:trend:1:20::A05
+2025-12-01 12:16:29,524 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 5, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 12:16:29,544 - INFO - Elasticsearch query to key-trend-v2-000001 completed in 0.02 seconds.
+2025-12-01 12:16:29,545 - INFO - /search_keywords completed successfully in 0.02 seconds.
+2025-12-01 12:16:29,550 - INFO - Saved result to cache asynchronously: search_keywords:['media']:12/01/2025:12/01/2025:all:trend:1:5::A05
+2025-12-01 12:16:54,444 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 12:16:54,458 - INFO - Elasticsearch query to key-trend-v2-000001 completed in 0.01 seconds.
+2025-12-01 12:16:54,459 - INFO - /search_keywords completed successfully in 0.02 seconds.
+2025-12-01 12:16:54,466 - INFO - Saved result to cache asynchronously: search_keywords:['media']:12/01/2025:12/01/2025:all:trend:1:10::A05
+2025-12-01 12:17:10,179 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 20, 'topic_ids': ['5698527c-4205-432d-b350-c69abd87eb52'], 'tenancy_ids': ['os1']}
+2025-12-01 12:17:10,193 - INFO - Elasticsearch query to key-trend-v2-000001 completed in 0.01 seconds.
+2025-12-01 12:17:10,193 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 12:17:10,199 - INFO - Saved result to cache asynchronously: search_keywords:['media']:12/01/2025:12/01/2025:5698527c-4205-432d-b350-c69abd87eb52:trend:1:20::os1
+2025-12-01 12:17:20,904 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 20, 'topic_ids': ['all'], 'tenancy_ids': ['os1']}
+2025-12-01 12:17:20,921 - INFO - Elasticsearch query to key-trend-v2-000001 completed in 0.02 seconds.
+2025-12-01 12:17:20,922 - INFO - /search_keywords completed successfully in 0.02 seconds.
+2025-12-01 12:17:20,930 - INFO - Saved result to cache asynchronously: search_keywords:['media']:12/01/2025:12/01/2025:all:trend:1:20::os1
+2025-12-01 12:17:32,144 - INFO - Query from general cache: search_keywords:['media']:12/01/2025:12/01/2025:all:trend:1:20::A05
+2025-12-01 12:17:37,079 - INFO - Query from general cache: search_keywords:['media']:12/01/2025:12/01/2025:all:trend:1:20::A05
+2025-12-01 12:19:35,816 - INFO - Query from general cache: search_keywords:['media']:12/01/2025:12/01/2025:all:trend:1:10::A05
+2025-12-01 12:20:14,244 - INFO - Query from general cache: search_keywords:['media']:12/01/2025:12/01/2025:all:trend:1:20::A05
+2025-12-01 12:20:28,139 - INFO - Query from general cache: search_keywords:['media']:12/01/2025:12/01/2025:all:trend:1:20::A05
+2025-12-01 12:20:36,159 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 12:20:36,159 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 12:20:36,159 - INFO - Connected to Elasticsearch.
+2025-12-01 12:20:56,049 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 12:20:56,049 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 12:20:56,049 - INFO - Connected to Elasticsearch.
+2025-12-01 12:21:07,566 - INFO - Query from general cache: search_keywords:['media']:12/01/2025:12/01/2025:all:trend:1:20::A05
+2025-12-01 12:21:30,095 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 12:21:30,096 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 12:21:30,097 - INFO - Connected to Elasticsearch.
+2025-12-01 12:22:24,621 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 12:22:24,622 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 12:22:24,622 - INFO - Connected to Elasticsearch.
+2025-12-01 12:23:35,851 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 12:23:35,851 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 12:23:35,852 - INFO - Connected to Elasticsearch.
+2025-12-01 12:24:20,691 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 12:24:20,691 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 12:24:20,692 - INFO - Connected to Elasticsearch.
+2025-12-01 12:24:36,658 - INFO - Query from general cache: search_keywords:['media']:12/01/2025:12/01/2025:all:trend:1:10::A05
+2025-12-01 12:25:00,177 - INFO - Query from general cache: search_keywords:['media']:12/01/2025:12/01/2025:all:trend:1:20::A05
+2025-12-01 12:26:38,301 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 12:26:38,302 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 12:26:38,302 - INFO - Connected to Elasticsearch.
+2025-12-01 12:27:30,275 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 12:27:30,276 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 12:27:30,276 - INFO - Connected to Elasticsearch.
+2025-12-01 12:27:57,584 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 12:27:57,591 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['media']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '12/01/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 12:27:57,591 - INFO - Index: key-trend-v2-000001
+2025-12-01 12:27:57,625 - INFO - ES Response hits count: 1
+2025-12-01 12:27:57,625 - INFO - Elasticsearch query to key-trend-v2-000001 completed in 0.03 seconds.
+2025-12-01 12:27:57,626 - INFO - /search_keywords completed successfully in 0.04 seconds.
+2025-12-01 12:29:20,252 - INFO - Query from general cache: search_keywords:['media']:12/01/2025:12/01/2025:all:trend:1:10::A05
+2025-12-01 12:29:31,656 - INFO - Query from general cache: search_keywords:['media']:12/01/2025:12/01/2025:all:trend:1:10::A05
+2025-12-01 13:41:45,632 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 13:41:45,632 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 13:41:45,633 - INFO - Connected to Elasticsearch.
+2025-12-01 13:44:15,867 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 13:44:15,867 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 13:44:15,867 - INFO - Connected to Elasticsearch.
+2025-12-01 13:44:53,849 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 13:44:53,849 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['media']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '12/01/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 13:44:53,849 - INFO - Index: key-trend-v2-000001
+2025-12-01 13:44:53,871 - INFO - ES Response hits count: 1
+2025-12-01 13:44:53,872 - INFO - Elasticsearch query to key-trend-v2-000001 completed in 0.02 seconds.
+2025-12-01 13:44:53,872 - INFO - /search_keywords completed successfully in 0.02 seconds.
+2025-12-01 13:44:53,879 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 13:50:51,771 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 13:50:51,772 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['media']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '12/01/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 13:50:51,772 - INFO - Index: key-trend-v2-000001
+2025-12-01 13:50:53,278 - INFO - ES Response hits count: 1
+2025-12-01 13:50:53,278 - INFO - Elasticsearch query to key-trend-v2-000001 completed in 1.51 seconds.
+2025-12-01 13:50:53,279 - INFO - /search_keywords completed successfully in 1.51 seconds.
+2025-12-01 13:50:53,289 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 13:55:59,748 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 13:55:59,748 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 13:55:59,749 - INFO - Connected to Elasticsearch.
+2025-12-01 13:57:32,024 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 13:57:32,025 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 13:57:32,025 - INFO - Connected to Elasticsearch.
+2025-12-01 13:58:44,855 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 13:58:44,855 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 13:58:44,856 - INFO - Connected to Elasticsearch.
+2025-12-01 13:58:45,416 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 13:58:45,416 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 13:58:45,417 - INFO - Connected to Elasticsearch.
+2025-12-01 13:58:45,468 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 13:58:45,468 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 13:58:45,468 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 13:58:45,468 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 13:58:45,469 - INFO - Connected to Elasticsearch.
+2025-12-01 13:58:45,469 - INFO - Connected to Elasticsearch.
+2025-12-01 13:58:59,949 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 13:58:59,950 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 13:58:59,950 - INFO - Connected to Elasticsearch.
+2025-12-01 13:59:00,510 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 13:59:00,511 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 13:59:00,511 - INFO - Connected to Elasticsearch.
+2025-12-01 13:59:00,556 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 13:59:00,556 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 13:59:00,557 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 13:59:00,557 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 13:59:00,557 - INFO - Connected to Elasticsearch.
+2025-12-01 13:59:00,557 - INFO - Connected to Elasticsearch.
+2025-12-01 14:02:10,948 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:02:10,948 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:02:10,949 - INFO - Connected to Elasticsearch.
+2025-12-01 14:02:11,004 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:02:11,004 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:02:11,004 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:02:11,004 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:02:11,005 - INFO - Connected to Elasticsearch.
+2025-12-01 14:02:11,005 - INFO - Connected to Elasticsearch.
+2025-12-01 14:02:28,403 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:02:28,403 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:02:28,404 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['media']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '12/01/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 14:02:28,404 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['media']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '12/01/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 14:02:28,404 - INFO - Index: key-trend-current-v2
+2025-12-01 14:02:28,404 - INFO - Index: key-trend-current-v2
+2025-12-01 14:02:28,444 - INFO - ES Response hits count: 1
+2025-12-01 14:02:28,444 - INFO - ES Response hits count: 1
+2025-12-01 14:02:28,444 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.04 seconds.
+2025-12-01 14:02:28,444 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.04 seconds.
+2025-12-01 14:02:28,445 - INFO - /search_keywords completed successfully in 0.04 seconds.
+2025-12-01 14:02:28,445 - INFO - /search_keywords completed successfully in 0.04 seconds.
+2025-12-01 14:02:28,453 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 14:02:28,453 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 14:02:31,501 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:02:31,501 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:02:31,503 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['media']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '12/01/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 14:02:31,503 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['media']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '12/01/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 14:02:31,503 - INFO - Index: key-trend-current-v2
+2025-12-01 14:02:31,503 - INFO - Index: key-trend-current-v2
+2025-12-01 14:02:31,519 - INFO - ES Response hits count: 1
+2025-12-01 14:02:31,519 - INFO - ES Response hits count: 1
+2025-12-01 14:02:31,520 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.02 seconds.
+2025-12-01 14:02:31,520 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.02 seconds.
+2025-12-01 14:02:31,521 - INFO - /search_keywords completed successfully in 0.02 seconds.
+2025-12-01 14:02:31,521 - INFO - /search_keywords completed successfully in 0.02 seconds.
+2025-12-01 14:02:31,529 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 14:02:31,529 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 14:14:21,372 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:14:21,372 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:14:21,373 - INFO - Connected to Elasticsearch.
+2025-12-01 14:14:21,417 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:14:21,417 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:14:21,417 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:14:21,417 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:14:21,418 - INFO - Connected to Elasticsearch.
+2025-12-01 14:14:21,418 - INFO - Connected to Elasticsearch.
+2025-12-01 14:14:34,141 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:14:34,142 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:14:34,142 - INFO - Connected to Elasticsearch.
+2025-12-01 14:14:34,190 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:14:34,190 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:14:34,190 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:14:34,190 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:14:34,191 - INFO - Connected to Elasticsearch.
+2025-12-01 14:14:34,191 - INFO - Connected to Elasticsearch.
+2025-12-01 14:14:57,627 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:14:57,627 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:14:57,628 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['media']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '12/01/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 14:14:57,628 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['media']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '12/01/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 14:14:57,628 - INFO - Index: key-trend-current-v2
+2025-12-01 14:14:57,628 - INFO - Index: key-trend-current-v2
+2025-12-01 14:14:57,663 - INFO - ES Response hits count: 1
+2025-12-01 14:14:57,663 - INFO - ES Response hits count: 1
+2025-12-01 14:14:57,663 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.04 seconds.
+2025-12-01 14:14:57,663 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.04 seconds.
+2025-12-01 14:14:57,663 - INFO - /search_keywords completed successfully in 0.04 seconds.
+2025-12-01 14:14:57,663 - INFO - /search_keywords completed successfully in 0.04 seconds.
+2025-12-01 14:14:57,671 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 14:14:57,671 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 14:20:46,252 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:20:46,252 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:20:46,252 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '12/01/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 14:20:46,252 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '12/01/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 14:20:46,252 - INFO - Index: key-trend-current-v2
+2025-12-01 14:20:46,252 - INFO - Index: key-trend-current-v2
+2025-12-01 14:20:46,259 - INFO - ES Response hits count: 0
+2025-12-01 14:20:46,259 - INFO - ES Response hits count: 0
+2025-12-01 14:20:46,259 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 14:20:46,259 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 14:20:46,259 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 14:20:46,259 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 14:20:46,264 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 14:20:46,264 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 14:21:09,598 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:21:09,598 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['media'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:21:09,600 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['media']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '12/01/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 14:21:09,600 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['media']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '12/01/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 14:21:09,600 - INFO - Index: key-trend-current-v2
+2025-12-01 14:21:09,600 - INFO - Index: key-trend-current-v2
+2025-12-01 14:21:09,616 - INFO - ES Response hits count: 1
+2025-12-01 14:21:09,616 - INFO - ES Response hits count: 1
+2025-12-01 14:21:09,616 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.02 seconds.
+2025-12-01 14:21:09,616 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.02 seconds.
+2025-12-01 14:21:09,617 - INFO - /search_keywords completed successfully in 0.02 seconds.
+2025-12-01 14:21:09,617 - INFO - /search_keywords completed successfully in 0.02 seconds.
+2025-12-01 14:21:09,625 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 14:21:09,625 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 14:21:28,105 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:21:28,105 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '12/01/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:21:28,105 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '12/01/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 14:21:28,105 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '12/01/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 14:21:28,106 - INFO - Index: key-trend-current-v2
+2025-12-01 14:21:28,106 - INFO - Index: key-trend-current-v2
+2025-12-01 14:21:28,113 - INFO - ES Response hits count: 0
+2025-12-01 14:21:28,113 - INFO - ES Response hits count: 0
+2025-12-01 14:21:28,113 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 14:21:28,113 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 14:21:28,114 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 14:21:28,114 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 14:21:28,120 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 14:21:28,120 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 14:25:20,118 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '30/11/2025', 'end_date': '30/11/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:25:20,118 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '30/11/2025', 'end_date': '30/11/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:25:20,118 - INFO - /search_keywords completed successfully in 0.00 seconds.
+2025-12-01 14:25:20,118 - INFO - /search_keywords completed successfully in 0.00 seconds.
+2025-12-01 14:25:20,139 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 14:25:20,139 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 14:25:36,147 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:25:36,147 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:25:36,147 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 14:25:36,147 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 14:25:36,147 - INFO - Index: key-trend-current-v2
+2025-12-01 14:25:36,147 - INFO - Index: key-trend-current-v2
+2025-12-01 14:25:36,169 - INFO - ES Response hits count: 1
+2025-12-01 14:25:36,169 - INFO - ES Response hits count: 1
+2025-12-01 14:25:36,169 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.02 seconds.
+2025-12-01 14:25:36,169 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.02 seconds.
+2025-12-01 14:25:36,173 - INFO - /search_keywords completed successfully in 0.03 seconds.
+2025-12-01 14:25:36,173 - INFO - /search_keywords completed successfully in 0.03 seconds.
+2025-12-01 14:25:36,185 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 14:25:36,185 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 14:26:42,544 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:26:42,544 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:26:42,545 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 14:26:42,545 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 14:26:42,545 - INFO - Index: key-trend-current-v2
+2025-12-01 14:26:42,545 - INFO - Index: key-trend-current-v2
+2025-12-01 14:26:42,554 - INFO - ES Response hits count: 1
+2025-12-01 14:26:42,554 - INFO - ES Response hits count: 1
+2025-12-01 14:26:42,554 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 14:26:42,554 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 14:26:42,555 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 14:26:42,555 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 14:26:42,564 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 14:26:42,564 - ERROR - Error saving to cache asynchronously: invalid expire time in setex
+2025-12-01 14:32:23,950 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:32:23,950 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:32:23,951 - INFO - Connected to Elasticsearch.
+2025-12-01 14:32:24,002 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:32:24,002 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:32:24,003 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:32:24,003 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:32:24,003 - INFO - Connected to Elasticsearch.
+2025-12-01 14:32:24,003 - INFO - Connected to Elasticsearch.
+2025-12-01 14:32:37,179 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:32:37,179 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:32:37,179 - INFO - Connected to Elasticsearch.
+2025-12-01 14:32:37,229 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:32:37,229 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:32:37,229 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:32:37,229 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:32:37,230 - INFO - Connected to Elasticsearch.
+2025-12-01 14:32:37,230 - INFO - Connected to Elasticsearch.
+2025-12-01 14:32:53,610 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:32:53,610 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:32:53,611 - INFO - Connected to Elasticsearch.
+2025-12-01 14:32:53,662 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:32:53,662 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:32:53,662 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:32:53,662 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:32:53,662 - INFO - Connected to Elasticsearch.
+2025-12-01 14:32:53,662 - INFO - Connected to Elasticsearch.
+2025-12-01 14:35:15,339 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:35:15,339 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:35:15,345 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 14:35:15,345 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 14:35:15,345 - INFO - Index: key-trend-current-v2
+2025-12-01 14:35:15,345 - INFO - Index: key-trend-current-v2
+2025-12-01 14:35:16,281 - INFO - ES Response hits count: 1
+2025-12-01 14:35:16,281 - INFO - ES Response hits count: 1
+2025-12-01 14:35:16,281 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.94 seconds.
+2025-12-01 14:35:16,281 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.94 seconds.
+2025-12-01 14:35:16,282 - INFO - /search_keywords completed successfully in 0.94 seconds.
+2025-12-01 14:35:16,282 - INFO - /search_keywords completed successfully in 0.94 seconds.
+2025-12-01 14:36:05,130 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:36:05,130 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:36:05,131 - INFO - Connected to Elasticsearch.
+2025-12-01 14:36:05,185 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:36:05,185 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:36:05,186 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:36:05,186 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:36:05,186 - INFO - Connected to Elasticsearch.
+2025-12-01 14:36:05,186 - INFO - Connected to Elasticsearch.
+2025-12-01 14:36:06,963 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:36:06,963 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:36:06,964 - INFO - Connected to Elasticsearch.
+2025-12-01 14:36:07,011 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:36:07,011 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 14:36:07,012 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:36:07,012 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 14:36:07,012 - INFO - Connected to Elasticsearch.
+2025-12-01 14:36:07,012 - INFO - Connected to Elasticsearch.
+2025-12-01 14:36:35,323 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/29/2025', 'end_date': '11/29/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:36:35,323 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/29/2025', 'end_date': '11/29/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 14:36:35,330 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/29/2025', 'lte': '11/29/2025'}}}]}}
+2025-12-01 14:36:35,330 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/29/2025', 'lte': '11/29/2025'}}}]}}
+2025-12-01 14:36:35,330 - INFO - Index: key-trend-current-v2
+2025-12-01 14:36:35,330 - INFO - Index: key-trend-current-v2
+2025-12-01 14:36:35,365 - INFO - ES Response hits count: 1
+2025-12-01 14:36:35,365 - INFO - ES Response hits count: 1
+2025-12-01 14:36:35,366 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.04 seconds.
+2025-12-01 14:36:35,366 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.04 seconds.
+2025-12-01 14:36:35,366 - INFO - /search_keywords completed successfully in 0.04 seconds.
+2025-12-01 14:36:35,366 - INFO - /search_keywords completed successfully in 0.04 seconds.
+2025-12-01 15:14:56,070 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:14:56,071 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:14:56,073 - INFO - Connected to Elasticsearch.
+2025-12-01 15:17:07,053 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:17:07,054 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:17:07,056 - INFO - Connected to Elasticsearch.
+2025-12-01 15:17:26,384 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:17:26,384 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:17:26,385 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:17:26,385 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:17:26,388 - INFO - Connected to Elasticsearch.
+2025-12-01 15:17:26,388 - INFO - Connected to Elasticsearch.
+2025-12-01 15:18:41,451 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:18:41,451 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:18:41,452 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:18:41,452 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:18:41,452 - INFO - Index: key-trend-current-v2
+2025-12-01 15:18:41,452 - INFO - Index: key-trend-current-v2
+2025-12-01 15:18:41,481 - INFO - ES Response hits count: 1
+2025-12-01 15:18:41,481 - INFO - ES Response hits count: 1
+2025-12-01 15:18:41,481 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.03 seconds.
+2025-12-01 15:18:41,481 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.03 seconds.
+2025-12-01 15:18:41,481 - INFO - /search_keywords completed successfully in 0.03 seconds.
+2025-12-01 15:18:41,481 - INFO - /search_keywords completed successfully in 0.03 seconds.
+2025-12-01 15:18:42,668 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:18:42,668 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:18:42,669 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:18:42,669 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:18:42,669 - INFO - Index: key-trend-current-v2
+2025-12-01 15:18:42,669 - INFO - Index: key-trend-current-v2
+2025-12-01 15:18:42,676 - INFO - ES Response hits count: 1
+2025-12-01 15:18:42,676 - INFO - ES Response hits count: 1
+2025-12-01 15:18:42,676 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:18:42,676 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:18:42,677 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:18:42,677 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:18:46,609 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:18:46,609 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:18:46,610 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:18:46,610 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:18:46,610 - INFO - Index: key-trend-current-v2
+2025-12-01 15:18:46,610 - INFO - Index: key-trend-current-v2
+2025-12-01 15:18:46,617 - INFO - ES Response hits count: 1
+2025-12-01 15:18:46,617 - INFO - ES Response hits count: 1
+2025-12-01 15:18:46,618 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:18:46,618 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:18:46,618 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:18:46,618 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:18:48,365 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:18:48,365 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:18:48,368 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:18:48,368 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:18:48,368 - INFO - Index: key-trend-current-v2
+2025-12-01 15:18:48,368 - INFO - Index: key-trend-current-v2
+2025-12-01 15:18:48,378 - INFO - ES Response hits count: 1
+2025-12-01 15:18:48,378 - INFO - ES Response hits count: 1
+2025-12-01 15:18:48,378 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:18:48,378 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:18:48,379 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:18:48,379 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:02,549 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:02,549 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:02,550 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:20:02,550 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:20:02,550 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:02,550 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:02,558 - INFO - ES Response hits count: 1
+2025-12-01 15:20:02,558 - INFO - ES Response hits count: 1
+2025-12-01 15:20:02,558 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:02,558 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:02,558 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:02,558 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:04,341 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:04,341 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:04,342 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:20:04,342 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:20:04,342 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:04,342 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:04,348 - INFO - ES Response hits count: 1
+2025-12-01 15:20:04,348 - INFO - ES Response hits count: 1
+2025-12-01 15:20:04,348 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:04,348 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:04,348 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:04,348 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:05,095 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:05,095 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:05,096 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:20:05,096 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:20:05,096 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:05,096 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:05,103 - INFO - ES Response hits count: 1
+2025-12-01 15:20:05,103 - INFO - ES Response hits count: 1
+2025-12-01 15:20:05,103 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:05,103 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:05,103 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:05,103 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:05,641 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:05,641 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:05,642 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:20:05,642 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:20:05,642 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:05,642 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:05,649 - INFO - ES Response hits count: 1
+2025-12-01 15:20:05,649 - INFO - ES Response hits count: 1
+2025-12-01 15:20:05,650 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:05,650 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:05,650 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:05,650 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:06,055 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:06,055 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:06,055 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:20:06,055 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:20:06,055 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:06,055 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:06,064 - INFO - ES Response hits count: 1
+2025-12-01 15:20:06,064 - INFO - ES Response hits count: 1
+2025-12-01 15:20:06,064 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:06,064 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:06,064 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:06,064 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:06,310 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:06,310 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:06,311 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:20:06,311 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:20:06,311 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:06,311 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:06,321 - INFO - ES Response hits count: 1
+2025-12-01 15:20:06,321 - INFO - ES Response hits count: 1
+2025-12-01 15:20:06,321 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:06,321 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:06,322 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:06,322 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:21,278 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:21,278 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:21,279 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:20:21,279 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:20:21,279 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:21,279 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:21,288 - INFO - ES Response hits count: 1
+2025-12-01 15:20:21,288 - INFO - ES Response hits count: 1
+2025-12-01 15:20:21,288 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:21,288 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:21,288 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:21,288 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:22,965 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:22,965 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:22,966 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:20:22,966 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:20:22,966 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:22,966 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:22,974 - INFO - ES Response hits count: 1
+2025-12-01 15:20:22,974 - INFO - ES Response hits count: 1
+2025-12-01 15:20:22,975 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:22,975 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:22,975 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:22,975 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:36,471 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/29/2025', 'end_date': '11/29/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:36,471 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/29/2025', 'end_date': '11/29/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:36,471 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/29/2025', 'lte': '11/29/2025'}}}]}}
+2025-12-01 15:20:36,471 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/29/2025', 'lte': '11/29/2025'}}}]}}
+2025-12-01 15:20:36,471 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:36,471 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:36,484 - INFO - ES Response hits count: 1
+2025-12-01 15:20:36,484 - INFO - ES Response hits count: 1
+2025-12-01 15:20:36,484 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:36,484 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:36,484 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:36,484 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:46,887 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/28/2025', 'end_date': '11/28/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:46,887 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/28/2025', 'end_date': '11/28/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:46,887 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/28/2025', 'lte': '11/28/2025'}}}]}}
+2025-12-01 15:20:46,887 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/28/2025', 'lte': '11/28/2025'}}}]}}
+2025-12-01 15:20:46,887 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:46,887 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:46,897 - INFO - ES Response hits count: 1
+2025-12-01 15:20:46,897 - INFO - ES Response hits count: 1
+2025-12-01 15:20:46,897 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:46,897 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:46,897 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:46,897 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:59,256 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/27/2025', 'end_date': '11/27/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:59,256 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/27/2025', 'end_date': '11/27/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:20:59,256 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/27/2025', 'lte': '11/27/2025'}}}]}}
+2025-12-01 15:20:59,256 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/27/2025', 'lte': '11/27/2025'}}}]}}
+2025-12-01 15:20:59,257 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:59,257 - INFO - Index: key-trend-current-v2
+2025-12-01 15:20:59,270 - INFO - ES Response hits count: 1
+2025-12-01 15:20:59,270 - INFO - ES Response hits count: 1
+2025-12-01 15:20:59,270 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:59,270 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:20:59,270 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:20:59,270 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:21:30,609 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:21:30,610 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:21:30,612 - INFO - Connected to Elasticsearch.
+2025-12-01 15:21:44,438 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:21:44,439 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:21:44,441 - INFO - Connected to Elasticsearch.
+2025-12-01 15:22:05,904 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:22:05,904 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:22:05,904 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:22:05,904 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:22:05,907 - INFO - Connected to Elasticsearch.
+2025-12-01 15:22:05,907 - INFO - Connected to Elasticsearch.
+2025-12-01 15:22:34,173 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:22:34,173 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:22:34,187 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:22:34,187 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:22:34,187 - INFO - Index: key-trend-current-v2
+2025-12-01 15:22:34,187 - INFO - Index: key-trend-current-v2
+2025-12-01 15:22:34,212 - INFO - ES Response hits count: 1
+2025-12-01 15:22:34,212 - INFO - ES Response hits count: 1
+2025-12-01 15:22:34,213 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.03 seconds.
+2025-12-01 15:22:34,213 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.03 seconds.
+2025-12-01 15:22:34,214 - INFO - /search_keywords completed successfully in 0.04 seconds.
+2025-12-01 15:22:34,214 - INFO - /search_keywords completed successfully in 0.04 seconds.
+2025-12-01 15:28:33,022 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:28:33,023 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:28:33,025 - INFO - Connected to Elasticsearch.
+2025-12-01 15:28:46,181 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:28:46,181 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:28:46,181 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:28:46,181 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:28:46,183 - INFO - Connected to Elasticsearch.
+2025-12-01 15:28:46,183 - INFO - Connected to Elasticsearch.
+2025-12-01 15:28:55,712 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:28:55,712 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:28:55,713 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:28:55,713 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:28:55,714 - INFO - Index: key-trend-current-v2
+2025-12-01 15:28:55,714 - INFO - Index: key-trend-current-v2
+2025-12-01 15:28:55,732 - INFO - ES Response hits count: 1
+2025-12-01 15:28:55,732 - INFO - ES Response hits count: 1
+2025-12-01 15:28:55,732 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.02 seconds.
+2025-12-01 15:28:55,732 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.02 seconds.
+2025-12-01 15:28:55,733 - INFO - /search_keywords completed successfully in 0.02 seconds.
+2025-12-01 15:28:55,733 - INFO - /search_keywords completed successfully in 0.02 seconds.
+2025-12-01 15:28:55,745 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/30/2025:11/30/2025:all:trend:1:10::A05
+2025-12-01 15:28:55,745 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/30/2025:11/30/2025:all:trend:1:10::A05
+2025-12-01 15:28:57,364 - INFO - Query from general cache: search_keywords:['facebook']:11/30/2025:11/30/2025:all:trend:1:10::A05
+2025-12-01 15:28:57,364 - INFO - Query from general cache: search_keywords:['facebook']:11/30/2025:11/30/2025:all:trend:1:10::A05
+2025-12-01 15:28:59,730 - INFO - Query from general cache: search_keywords:['facebook']:11/30/2025:11/30/2025:all:trend:1:10::A05
+2025-12-01 15:28:59,730 - INFO - Query from general cache: search_keywords:['facebook']:11/30/2025:11/30/2025:all:trend:1:10::A05
+2025-12-01 15:29:31,906 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:29:31,906 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:29:31,907 - INFO - Connected to Elasticsearch.
+2025-12-01 15:29:32,023 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:29:32,023 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:29:32,024 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:29:32,024 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:29:32,025 - INFO - Connected to Elasticsearch.
+2025-12-01 15:29:32,025 - INFO - Connected to Elasticsearch.
+2025-12-01 15:37:58,456 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:37:58,456 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:37:58,457 - INFO - Connected to Elasticsearch.
+2025-12-01 15:37:58,565 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:37:58,565 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:37:58,565 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:37:58,565 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:37:58,566 - INFO - Connected to Elasticsearch.
+2025-12-01 15:37:58,566 - INFO - Connected to Elasticsearch.
+2025-12-01 15:38:14,415 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:38:14,416 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:38:14,418 - INFO - Connected to Elasticsearch.
+2025-12-01 15:38:58,747 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:38:58,748 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:38:58,749 - INFO - Connected to Elasticsearch.
+2025-12-01 15:38:59,598 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:38:59,598 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:38:59,599 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:38:59,599 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:38:59,601 - INFO - Connected to Elasticsearch.
+2025-12-01 15:38:59,601 - INFO - Connected to Elasticsearch.
+2025-12-01 15:39:34,212 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:39:34,213 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:39:34,215 - INFO - Connected to Elasticsearch.
+2025-12-01 15:39:39,328 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:39:39,329 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:39:39,330 - INFO - Connected to Elasticsearch.
+2025-12-01 15:39:39,461 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:39:39,461 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 15:39:39,461 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:39:39,461 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 15:39:39,463 - INFO - Connected to Elasticsearch.
+2025-12-01 15:39:39,463 - INFO - Connected to Elasticsearch.
+2025-12-01 15:53:59,969 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/24/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:53:59,969 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/24/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:53:59,970 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/24/2025'}}}]}}
+2025-12-01 15:53:59,970 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/24/2025'}}}]}}
+2025-12-01 15:53:59,971 - INFO - Index: key-trend-current-v2
+2025-12-01 15:53:59,971 - INFO - Index: key-trend-current-v2
+2025-12-01 15:53:59,988 - INFO - ES Response hits count: 0
+2025-12-01 15:53:59,988 - INFO - ES Response hits count: 0
+2025-12-01 15:53:59,988 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.02 seconds.
+2025-12-01 15:53:59,988 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.02 seconds.
+2025-12-01 15:53:59,989 - INFO - /search_keywords completed successfully in 0.02 seconds.
+2025-12-01 15:53:59,989 - INFO - /search_keywords completed successfully in 0.02 seconds.
+2025-12-01 15:53:59,998 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/30/2025:11/24/2025:all:trend:1:10::A05
+2025-12-01 15:53:59,998 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/30/2025:11/24/2025:all:trend:1:10::A05
+2025-12-01 15:55:19,727 - INFO - Query from general cache: search_keywords:['facebook']:11/30/2025:11/24/2025:all:trend:1:10::A05
+2025-12-01 15:55:19,727 - INFO - Query from general cache: search_keywords:['facebook']:11/30/2025:11/24/2025:all:trend:1:10::A05
+2025-12-01 15:55:19,727 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/24/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:55:19,727 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/24/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:55:19,728 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/24/2025'}}}]}}
+2025-12-01 15:55:19,728 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/24/2025'}}}]}}
+2025-12-01 15:55:19,728 - INFO - Index: key-trend-current-v2
+2025-12-01 15:55:19,728 - INFO - Index: key-trend-current-v2
+2025-12-01 15:55:19,737 - INFO - ES Response hits count: 0
+2025-12-01 15:55:19,737 - INFO - ES Response hits count: 0
+2025-12-01 15:55:19,737 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:55:19,737 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:55:19,737 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:55:19,737 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:55:19,745 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/30/2025:11/24/2025:all:trend:1:10::A05
+2025-12-01 15:55:19,745 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/30/2025:11/24/2025:all:trend:1:10::A05
+2025-12-01 15:56:45,725 - INFO - Query from general cache: search_keywords:['facebook']:11/30/2025:11/24/2025:all:trend:1:10::A05
+2025-12-01 15:56:45,725 - INFO - Query from general cache: search_keywords:['facebook']:11/30/2025:11/24/2025:all:trend:1:10::A05
+2025-12-01 15:56:45,725 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/24/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:56:45,725 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/24/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:56:45,727 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/24/2025'}}}]}}
+2025-12-01 15:56:45,727 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/24/2025'}}}]}}
+2025-12-01 15:56:45,727 - INFO - Index: key-trend-current-v2
+2025-12-01 15:56:45,727 - INFO - Index: key-trend-current-v2
+2025-12-01 15:56:45,737 - INFO - ES Response hits count: 0
+2025-12-01 15:56:45,737 - INFO - ES Response hits count: 0
+2025-12-01 15:56:45,738 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:56:45,738 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:56:45,739 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:56:45,739 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:56:45,751 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/30/2025:11/24/2025:all:trend:1:10::A05
+2025-12-01 15:56:45,751 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/30/2025:11/24/2025:all:trend:1:10::A05
+2025-12-01 15:57:36,476 - INFO - Query from general cache: search_keywords:['facebook']:11/30/2025:11/24/2025:all:trend:1:10::A05
+2025-12-01 15:57:36,476 - INFO - Query from general cache: search_keywords:['facebook']:11/30/2025:11/24/2025:all:trend:1:10::A05
+2025-12-01 15:57:36,477 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/24/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:57:36,477 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/24/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:57:36,479 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/24/2025'}}}]}}
+2025-12-01 15:57:36,479 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/24/2025'}}}]}}
+2025-12-01 15:57:36,479 - INFO - Index: key-trend-current-v2
+2025-12-01 15:57:36,479 - INFO - Index: key-trend-current-v2
+2025-12-01 15:57:36,494 - INFO - ES Response hits count: 0
+2025-12-01 15:57:36,494 - INFO - ES Response hits count: 0
+2025-12-01 15:57:36,495 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.02 seconds.
+2025-12-01 15:57:36,495 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.02 seconds.
+2025-12-01 15:57:36,501 - INFO - /search_keywords completed successfully in 0.02 seconds.
+2025-12-01 15:57:36,501 - INFO - /search_keywords completed successfully in 0.02 seconds.
+2025-12-01 15:57:36,520 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/30/2025:11/24/2025:all:trend:1:10::A05
+2025-12-01 15:57:36,520 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/30/2025:11/24/2025:all:trend:1:10::A05
+2025-12-01 15:58:15,073 - INFO - Query from general cache: search_keywords:['facebook']:11/30/2025:11/24/2025:all:trend:1:10::A05
+2025-12-01 15:58:15,073 - INFO - Query from general cache: search_keywords:['facebook']:11/30/2025:11/24/2025:all:trend:1:10::A05
+2025-12-01 15:58:15,073 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/24/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:58:15,073 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/30/2025', 'end_date': '11/24/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:58:15,074 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/24/2025'}}}]}}
+2025-12-01 15:58:15,074 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/30/2025', 'lte': '11/24/2025'}}}]}}
+2025-12-01 15:58:15,074 - INFO - Index: key-trend-current-v2
+2025-12-01 15:58:15,074 - INFO - Index: key-trend-current-v2
+2025-12-01 15:58:15,081 - INFO - ES Response hits count: 0
+2025-12-01 15:58:15,081 - INFO - ES Response hits count: 0
+2025-12-01 15:58:15,081 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:58:15,081 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.01 seconds.
+2025-12-01 15:58:15,082 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:58:15,082 - INFO - /search_keywords completed successfully in 0.01 seconds.
+2025-12-01 15:58:15,089 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/30/2025:11/24/2025:all:trend:1:10::A05
+2025-12-01 15:58:15,089 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/30/2025:11/24/2025:all:trend:1:10::A05
+2025-12-01 15:58:45,137 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/24/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:58:45,137 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/24/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 15:58:45,139 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/24/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:58:45,139 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/24/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 15:58:45,139 - INFO - Index: key-trend-current-v2
+2025-12-01 15:58:45,139 - INFO - Index: key-trend-current-v2
+2025-12-01 15:58:45,167 - INFO - ES Response hits count: 7
+2025-12-01 15:58:45,167 - INFO - ES Response hits count: 7
+2025-12-01 15:58:45,167 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.03 seconds.
+2025-12-01 15:58:45,167 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.03 seconds.
+2025-12-01 15:58:45,169 - INFO - /search_keywords completed successfully in 0.03 seconds.
+2025-12-01 15:58:45,169 - INFO - /search_keywords completed successfully in 0.03 seconds.
+2025-12-01 15:58:45,177 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/24/2025:11/30/2025:all:trend:1:10::A05
+2025-12-01 15:58:45,177 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/24/2025:11/30/2025:all:trend:1:10::A05
+2025-12-01 15:59:26,191 - INFO - Query from general cache: search_keywords:['facebook']:11/24/2025:11/30/2025:all:trend:1:10::A05
+2025-12-01 15:59:26,191 - INFO - Query from general cache: search_keywords:['facebook']:11/24/2025:11/30/2025:all:trend:1:10::A05
+2025-12-01 16:01:11,476 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/25/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 16:01:11,476 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/25/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 16:01:11,478 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/25/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 16:01:11,478 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/25/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 16:01:11,478 - INFO - Index: key-trend-current-v2
+2025-12-01 16:01:11,478 - INFO - Index: key-trend-current-v2
+2025-12-01 16:01:11,540 - INFO - ES Response hits count: 6
+2025-12-01 16:01:11,540 - INFO - ES Response hits count: 6
+2025-12-01 16:01:11,540 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.06 seconds.
+2025-12-01 16:01:11,540 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.06 seconds.
+2025-12-01 16:01:11,541 - INFO - /search_keywords completed successfully in 0.07 seconds.
+2025-12-01 16:01:11,541 - INFO - /search_keywords completed successfully in 0.07 seconds.
+2025-12-01 16:01:11,550 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/25/2025:12/01/2025:all:trend:1:10::A05
+2025-12-01 16:01:11,550 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/25/2025:12/01/2025:all:trend:1:10::A05
+2025-12-01 16:04:49,029 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/24/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 16:04:49,029 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/24/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': ['all'], 'tenancy_ids': ['A05']}
+2025-12-01 16:04:49,031 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/24/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 16:04:49,031 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/24/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 16:04:49,031 - INFO - Index: key-trend-current-v2
+2025-12-01 16:04:49,031 - INFO - Index: key-trend-current-v2
+2025-12-01 16:04:49,064 - INFO - ES Response hits count: 7
+2025-12-01 16:04:49,064 - INFO - ES Response hits count: 7
+2025-12-01 16:04:49,065 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.03 seconds.
+2025-12-01 16:04:49,065 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.03 seconds.
+2025-12-01 16:04:49,067 - INFO - /search_keywords completed successfully in 0.04 seconds.
+2025-12-01 16:04:49,067 - INFO - /search_keywords completed successfully in 0.04 seconds.
+2025-12-01 16:04:49,073 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/24/2025:12/01/2025:all:trend:1:10::A05
+2025-12-01 16:04:49,073 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/24/2025:12/01/2025:all:trend:1:10::A05
+2025-12-01 16:05:22,014 - INFO - Query from general cache: search_keywords:['facebook']:11/24/2025:12/01/2025:all:trend:1:10::A05
+2025-12-01 16:05:22,014 - INFO - Query from general cache: search_keywords:['facebook']:11/24/2025:12/01/2025:all:trend:1:10::A05
+2025-12-01 16:05:27,888 - INFO - Query from general cache: search_keywords:['facebook']:11/24/2025:12/01/2025:all:trend:1:10::A05
+2025-12-01 16:05:27,888 - INFO - Query from general cache: search_keywords:['facebook']:11/24/2025:12/01/2025:all:trend:1:10::A05
+2025-12-01 16:05:44,199 - INFO - Query from general cache: search_keywords:['facebook']:11/24/2025:12/01/2025:all:trend:1:10::A05
+2025-12-01 16:05:44,199 - INFO - Query from general cache: search_keywords:['facebook']:11/24/2025:12/01/2025:all:trend:1:10::A05
+2025-12-01 16:08:19,784 - INFO - Query from general cache: search_keywords:['facebook']:11/24/2025:12/01/2025:all:trend:1:10::A05
+2025-12-01 16:08:19,784 - INFO - Query from general cache: search_keywords:['facebook']:11/24/2025:12/01/2025:all:trend:1:10::A05
+2025-12-01 16:10:22,399 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/24/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': [], 'tenancy_ids': ['A05']}
+2025-12-01 16:10:22,399 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook'], 'start_date': '11/24/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': [], 'tenancy_ids': ['A05']}
+2025-12-01 16:10:22,402 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/24/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 16:10:22,402 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/24/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 16:10:22,402 - INFO - Index: key-trend-current-v2
+2025-12-01 16:10:22,402 - INFO - Index: key-trend-current-v2
+2025-12-01 16:10:22,440 - INFO - ES Response hits count: 7
+2025-12-01 16:10:22,440 - INFO - ES Response hits count: 7
+2025-12-01 16:10:22,440 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.04 seconds.
+2025-12-01 16:10:22,440 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.04 seconds.
+2025-12-01 16:10:22,446 - INFO - /search_keywords completed successfully in 0.05 seconds.
+2025-12-01 16:10:22,446 - INFO - /search_keywords completed successfully in 0.05 seconds.
+2025-12-01 16:10:22,456 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/24/2025:12/01/2025::trend:1:10::A05
+2025-12-01 16:10:22,456 - INFO - Saved result to cache asynchronously: search_keywords:['facebook']:11/24/2025:12/01/2025::trend:1:10::A05
+2025-12-01 16:12:01,223 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 16:12:01,224 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 16:12:01,226 - INFO - Connected to Elasticsearch.
+2025-12-01 16:12:01,363 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 16:12:01,363 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 16:12:01,364 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 16:12:01,364 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 16:12:01,366 - INFO - Connected to Elasticsearch.
+2025-12-01 16:12:01,366 - INFO - Connected to Elasticsearch.
+2025-12-01 16:13:18,925 - INFO - Query from cache search_keywords (special logic)
+2025-12-01 16:13:18,925 - INFO - Query from cache search_keywords (special logic)
+2025-12-01 16:18:09,275 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit'], 'start_date': '11/24/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': [], 'tenancy_ids': ['A05']}
+2025-12-01 16:18:09,275 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit'], 'start_date': '11/24/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': [], 'tenancy_ids': ['A05']}
+2025-12-01 16:29:43,067 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/24/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 16:29:43,067 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/24/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 16:30:03,443 - INFO - Index: key-trend-current-v2
+2025-12-01 16:30:03,443 - INFO - Index: key-trend-current-v2
+2025-12-01 16:30:54,461 - INFO - ES Response hits count: 15
+2025-12-01 16:30:54,461 - INFO - ES Response hits count: 15
+2025-12-01 16:31:16,603 - INFO - Elasticsearch query to key-trend-current-v2 completed in 71.21 seconds.
+2025-12-01 16:31:16,603 - INFO - Elasticsearch query to key-trend-current-v2 completed in 71.21 seconds.
+2025-12-01 16:51:44,153 - INFO - /search_keywords completed successfully in 2024.10 seconds.
+2025-12-01 16:51:44,153 - INFO - /search_keywords completed successfully in 2024.10 seconds.
+2025-12-01 16:51:50,628 - INFO - Saved result to cache asynchronously: search_keywords:['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit']:11/24/2025:12/01/2025::trend:1:10::A05
+2025-12-01 16:51:50,628 - INFO - Saved result to cache asynchronously: search_keywords:['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit']:11/24/2025:12/01/2025::trend:1:10::A05
+2025-12-01 17:04:10,660 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:04:10,661 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:04:10,663 - INFO - Connected to Elasticsearch.
+2025-12-01 17:04:10,819 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:04:10,819 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:04:10,820 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:04:10,820 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:04:10,821 - INFO - Connected to Elasticsearch.
+2025-12-01 17:04:10,821 - INFO - Connected to Elasticsearch.
+2025-12-01 17:05:39,335 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:05:39,336 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:05:39,338 - INFO - Connected to Elasticsearch.
+2025-12-01 17:05:39,481 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:05:39,481 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:05:39,482 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:05:39,482 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:05:39,483 - INFO - Connected to Elasticsearch.
+2025-12-01 17:05:39,483 - INFO - Connected to Elasticsearch.
+2025-12-01 17:06:30,867 - INFO - Query from cache search_keywords (special logic)
+2025-12-01 17:06:30,867 - INFO - Query from cache search_keywords (special logic)
+2025-12-01 17:06:30,893 - INFO - Query from general cache: search_keywords:['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit']:11/24/2025:12/01/2025::trend:1:10::A05
+2025-12-01 17:06:30,893 - INFO - Query from general cache: search_keywords:['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit']:11/24/2025:12/01/2025::trend:1:10::A05
+2025-12-01 17:06:42,494 - INFO - Query from cache search_keywords (special logic)
+2025-12-01 17:06:42,494 - INFO - Query from cache search_keywords (special logic)
+2025-12-01 17:06:42,504 - INFO - Query from general cache: search_keywords:['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit']:11/24/2025:12/01/2025::trend:1:10::A05
+2025-12-01 17:06:42,504 - INFO - Query from general cache: search_keywords:['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit']:11/24/2025:12/01/2025::trend:1:10::A05
+2025-12-01 17:10:59,265 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:10:59,266 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:10:59,267 - INFO - Connected to Elasticsearch.
+2025-12-01 17:10:59,381 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:10:59,381 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:10:59,382 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:10:59,382 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:10:59,382 - INFO - Connected to Elasticsearch.
+2025-12-01 17:10:59,382 - INFO - Connected to Elasticsearch.
+2025-12-01 17:11:07,691 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:11:07,692 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:11:07,693 - INFO - Connected to Elasticsearch.
+2025-12-01 17:11:07,807 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:11:07,807 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:11:07,807 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:11:07,807 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:11:07,808 - INFO - Connected to Elasticsearch.
+2025-12-01 17:11:07,808 - INFO - Connected to Elasticsearch.
+2025-12-01 17:12:19,938 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:12:19,939 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:12:19,939 - INFO - Connected to Elasticsearch.
+2025-12-01 17:12:21,484 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:12:21,484 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:12:21,485 - INFO - Connected to Elasticsearch.
+2025-12-01 17:12:21,584 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:12:21,584 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:12:21,584 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:12:21,584 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:12:21,585 - INFO - Connected to Elasticsearch.
+2025-12-01 17:12:21,585 - INFO - Connected to Elasticsearch.
+2025-12-01 17:12:24,585 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit'], 'start_date': '11/24/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': [], 'tenancy_ids': ['A05']}
+2025-12-01 17:12:24,585 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit'], 'start_date': '11/24/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': [], 'tenancy_ids': ['A05']}
+2025-12-01 17:12:24,593 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/24/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 17:12:24,593 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/24/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 17:12:24,594 - INFO - Index: key-trend-current-v2
+2025-12-01 17:12:24,594 - INFO - Index: key-trend-current-v2
+2025-12-01 17:12:24,665 - INFO - ES Response hits count: 15
+2025-12-01 17:12:24,665 - INFO - ES Response hits count: 15
+2025-12-01 17:12:24,665 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.07 seconds.
+2025-12-01 17:12:24,665 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.07 seconds.
+2025-12-01 17:12:24,668 - INFO - /search_keywords completed successfully in 0.08 seconds.
+2025-12-01 17:12:24,668 - INFO - /search_keywords completed successfully in 0.08 seconds.
+2025-12-01 17:17:48,213 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:17:48,214 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:17:48,215 - INFO - Connected to Elasticsearch.
+2025-12-01 17:17:48,327 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:17:48,327 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:17:48,327 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:17:48,327 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:17:48,328 - INFO - Connected to Elasticsearch.
+2025-12-01 17:17:48,328 - INFO - Connected to Elasticsearch.
+2025-12-01 17:18:36,346 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:18:36,347 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:18:36,348 - INFO - Connected to Elasticsearch.
+2025-12-01 17:18:36,447 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:18:36,447 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:18:36,448 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:18:36,448 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:18:36,448 - INFO - Connected to Elasticsearch.
+2025-12-01 17:18:36,448 - INFO - Connected to Elasticsearch.
+2025-12-01 17:18:51,985 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit'], 'start_date': '11/24/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': [], 'tenancy_ids': ['A05']}
+2025-12-01 17:18:51,985 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit'], 'start_date': '11/24/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': [], 'tenancy_ids': ['A05']}
+2025-12-01 17:18:51,994 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/24/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 17:18:51,994 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/24/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 17:18:51,994 - INFO - Index: key-trend-current-v2
+2025-12-01 17:18:51,994 - INFO - Index: key-trend-current-v2
+2025-12-01 17:18:52,068 - INFO - ES Response hits count: 15
+2025-12-01 17:18:52,068 - INFO - ES Response hits count: 15
+2025-12-01 17:18:52,068 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.07 seconds.
+2025-12-01 17:18:52,068 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.07 seconds.
+2025-12-01 17:18:52,071 - INFO - /search_keywords completed successfully in 0.09 seconds.
+2025-12-01 17:18:52,071 - INFO - /search_keywords completed successfully in 0.09 seconds.
+2025-12-01 17:22:23,333 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:22:23,334 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:22:23,334 - INFO - Connected to Elasticsearch.
+2025-12-01 17:22:23,443 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:22:23,443 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:22:23,444 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:22:23,444 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:22:23,444 - INFO - Connected to Elasticsearch.
+2025-12-01 17:22:23,444 - INFO - Connected to Elasticsearch.
+2025-12-01 17:22:49,456 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:22:49,456 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:22:49,457 - INFO - Connected to Elasticsearch.
+2025-12-01 17:22:49,558 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:22:49,558 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:22:49,558 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:22:49,558 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:22:49,559 - INFO - Connected to Elasticsearch.
+2025-12-01 17:22:49,559 - INFO - Connected to Elasticsearch.
+2025-12-01 17:24:08,916 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:24:08,916 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:24:08,917 - INFO - Connected to Elasticsearch.
+2025-12-01 17:24:09,014 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:24:09,014 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:24:09,015 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:24:09,015 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:24:09,015 - INFO - Connected to Elasticsearch.
+2025-12-01 17:24:09,015 - INFO - Connected to Elasticsearch.
+2025-12-01 17:24:37,475 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:24:37,476 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:24:37,476 - INFO - Connected to Elasticsearch.
+2025-12-01 17:24:37,596 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:24:37,596 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:24:37,597 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:24:37,597 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:24:37,597 - INFO - Connected to Elasticsearch.
+2025-12-01 17:24:37,597 - INFO - Connected to Elasticsearch.
+2025-12-01 17:26:25,106 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit'], 'start_date': '11/24/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': [], 'tenancy_ids': ['A05']}
+2025-12-01 17:26:25,106 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit'], 'start_date': '11/24/2025', 'end_date': '11/30/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': [], 'tenancy_ids': ['A05']}
+2025-12-01 17:26:25,117 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/24/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 17:26:25,117 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook', 'tiktok', 'youtube', 'voz', 'xamvn', 'otofun', 'media', 'reddit']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/24/2025', 'lte': '11/30/2025'}}}]}}
+2025-12-01 17:26:25,117 - INFO - Index: key-trend-current-v2
+2025-12-01 17:26:25,117 - INFO - Index: key-trend-current-v2
+2025-12-01 17:26:25,184 - INFO - ES Response hits count: 14
+2025-12-01 17:26:25,184 - INFO - ES Response hits count: 14
+2025-12-01 17:26:25,184 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.07 seconds.
+2025-12-01 17:26:25,184 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.07 seconds.
+2025-12-01 17:26:25,185 - INFO - /search_keywords completed successfully in 0.08 seconds.
+2025-12-01 17:26:25,185 - INFO - /search_keywords completed successfully in 0.08 seconds.
+2025-12-01 17:35:35,069 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:35:35,071 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:35:35,071 - INFO - Connected to Elasticsearch.
+2025-12-01 17:36:59,187 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook', 'media'], 'start_date': '11/24/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': [], 'tenancy_ids': ['A05']}
+2025-12-01 17:36:59,193 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook', 'media']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/24/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 17:36:59,193 - INFO - Index: key-trend-current-v2
+2025-12-01 17:36:59,260 - INFO - ES Response hits count: 15
+2025-12-01 17:36:59,260 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.07 seconds.
+2025-12-01 17:36:59,261 - INFO - /search_keywords completed successfully in 0.07 seconds.
+2025-12-01 17:37:15,945 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook', 'media'], 'start_date': '11/24/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': [], 'tenancy_ids': ['A05']}
+2025-12-01 17:37:15,946 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook', 'media']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/24/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 17:37:15,947 - INFO - Index: key-trend-current-v2
+2025-12-01 17:37:16,009 - INFO - ES Response hits count: 15
+2025-12-01 17:37:16,009 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.06 seconds.
+2025-12-01 17:37:16,012 - INFO - /search_keywords completed successfully in 0.07 seconds.
+2025-12-01 17:37:36,625 - INFO - /search_keywords endpoint called with request: {'keyword': '', 'type': ['facebook', 'media'], 'start_date': '11/24/2025', 'end_date': '12/01/2025', 'type_top': 'trend', 'page': 1, 'page_size': 10, 'topic_ids': [], 'tenancy_ids': ['A05']}
+2025-12-01 17:37:36,626 - INFO - ES Query: {'bool': {'must': [{'terms': {'type': ['facebook', 'media']}}, {'terms': {'topic_id': ['all']}}, {'terms': {'tenant_id': ['A05']}}, {'range': {'date': {'gte': '11/24/2025', 'lte': '12/01/2025'}}}]}}
+2025-12-01 17:37:36,626 - INFO - Index: key-trend-current-v2
+2025-12-01 17:37:36,685 - INFO - ES Response hits count: 15
+2025-12-01 17:37:36,685 - INFO - Elasticsearch query to key-trend-current-v2 completed in 0.06 seconds.
+2025-12-01 17:37:36,688 - INFO - /search_keywords completed successfully in 0.06 seconds.
+2025-12-01 17:40:49,672 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:40:49,674 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:40:49,675 - INFO - Connected to Elasticsearch.
+2025-12-01 17:42:54,109 - INFO - Loaded whitelist from white_list.txt. Total items: 32
+2025-12-01 17:42:54,112 - INFO - Loaded whitelist from black_list.txt. Total items: 292
+2025-12-01 17:42:54,114 - INFO - Connected to Elasticsearch.

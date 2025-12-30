@@ -7,11 +7,11 @@ replicaCount: 1
 
 # This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
 image:
-  repository: nginx
+  repository: quangkhai013/countkey_21102015_v2-api
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "v2.0.0"
 
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
@@ -30,6 +30,47 @@ serviceAccount:
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template.
   name: ""
+
+# env:
+#   - name: API_HOST
+#     value: "0.0.0.0"      # <--- QUAN TRỌNG: Phải đổi localhost thành 0.0.0.0
+#   - name: API_PORT
+#     value: "55555"
+#   - name: ELASTICSEARCH_URL
+#     value: "http://10.11.32.21:30100"
+#   - name: ELASTICSEARCH_DB_URL
+#     value: "http://10.11.32.21:30100"
+#   - name: REDIS_HOST
+#     value: "10.11.32.21"
+#   - name: REDIS_PORT
+#     value: "30106"        # Nên để trong ngoặc kép cho an toàn
+#   - name: MONGOS_HOST
+#     value: "10.11.32.22"
+#   - name: MONGOS_PORT
+#     value: "30000"
+#   - name: DAY_RUN_AGAIN   # <--- Đã thêm biến này
+#     value: "3"
+
+env:
+  - name: API_HOST
+    value: "keyword.osint.svc.cluster.local"
+  - name: API_PORT
+    value: "55555"
+  - name: ELASTICSEARCH_URL
+    value: "http://elk-elasticsearch.osint.svc.cluster.local:9200"
+  - name: ELASTICSEARCH_DB_URL
+    value: "http://elk-elasticsearch.osint.svc.cluster.local:9200"
+  - name: REDIS_HOST
+    value: "redis-redis.osint.svc.cluster.local"
+  - name: REDIS_PORT
+    value: "6379"
+  - name: MONGOS_HOST
+    value: "mongos1.osint.svc.cluster.local"
+  - name: MONGOS_PORT
+    value: "27017"
+  - name: DAY_RUN_AGAIN 
+    value: "7"
+
 
 # This is for setting Kubernetes Annotations to a Pod.
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
@@ -52,9 +93,10 @@ securityContext: {}
 # This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
 service:
   # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
-  type: ClusterIP
+  type: NodePort
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
-  port: 80
+  port: 55555
+  targetPort: 55555
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
@@ -111,27 +153,27 @@ httpRoute:
   #     - name: version
   #       value: v2
 
-resources: {}
+resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  limits:
+    cpu: "2"
+    memory: "4Gi"
+  requests:
+    cpu: "500m"
+    memory: "1Gi"
 
-# This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
-livenessProbe:
-  httpGet:
-    path: /
-    port: http
-readinessProbe:
-  httpGet:
-    path: /
-    port: http
+# # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+# livenessProbe:
+#   httpGet:
+#     path: /
+#     port: http
+# readinessProbe:
+#   httpGet:
+#     path: /
+#     port: http
 
 # This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
@@ -154,8 +196,13 @@ volumeMounts: []
   #   mountPath: "/etc/foo"
   #   readOnly: true
 
-nodeSelector: {}
+nodeSelector: 
+  kubernetes.io/hostname: worker07-osint
 
-tolerations: []
+tolerations: 
+  - key: "kubernetes.io/hostname"
+    operator: "Equal"
+    value: "worker07-osint"
+    effect: "NoSchedule"
 
 affinity: {}

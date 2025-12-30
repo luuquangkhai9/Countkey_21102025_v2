@@ -1,0 +1,9 @@
+# Trên server K8s
+cd ~/k8s/countkey-deploy
+helm upgrade countkey-deploy . -n osint
+kubectl get pods -n osint -w  # Watch pods restart
+
+# Xem chi tiết lý do Pending
+kubectl describe pod countkey-deploy-57949d9f9-kkp75 -n osint
+
+password@2025

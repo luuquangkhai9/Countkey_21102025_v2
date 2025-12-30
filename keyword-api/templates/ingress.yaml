@@ -2,9 +2,9 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "countkey_deploy.fullname" . }}
+  name: {{ include "keyword-api.fullname" . }}
   labels:
-    {{- include "countkey_deploy.labels" . | nindent 4 }}
+    {{- include "keyword-api.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -35,7 +35,7 @@ spec:
             {{- end }}
             backend:
               service:
-                name: {{ include "countkey_deploy.fullname" $ }}
+                name: {{ include "keyword-api.fullname" $ }}
                 port:
                   number: {{ $.Values.service.port }}
           {{- end }}
