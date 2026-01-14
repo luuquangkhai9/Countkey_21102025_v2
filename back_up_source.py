@@ -26,6 +26,8 @@ from get_topic_kw import query_topic_id_grouped_by_tenant
 #         return True
 #     else:
 #         return False
+
+#ddd
 def CheckBig(arrcheck):
     min_value = min(arrcheck)
     if min_value < 1:
